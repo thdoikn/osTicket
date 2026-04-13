@@ -52,6 +52,12 @@ if ($lang) {
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/select2.min.css">
     <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/style.css" media="screen">
     <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/open-form.css" media="screen">
+<?php
+if (!empty($lpb_load_ticket_view_css)) { ?>
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/ticket-view.css" media="screen">
+<?php
+}
+?>
     <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-16x16.png" sizes="16x16" />
     <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-3.7.0.min.js"></script>
@@ -70,4 +76,8 @@ if ($lang) {
     }
     ?>
 </head>
-<body class="create-ticket-page">
+<body class="create-ticket-page<?php
+if (!empty($lpb_body_extra_class)) {
+    echo ' ' . Format::htmlchars($lpb_body_extra_class);
+}
+?>">

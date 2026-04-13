@@ -143,8 +143,56 @@ if($ticket && $ticket->checkUserAccess($thisclient)) {
     $nav->setActiveNav('new');
     $inc='open.inc.php';
 }
-include(CLIENTINC_DIR.'header.inc.php');
-include(CLIENTINC_DIR.$inc);
-print $tform->getMedia();
-include(CLIENTINC_DIR.'footer.inc.php');
+
+$lpb_use_ticket_shell = ($ticket && $ticket->checkUserAccess($thisclient)
+    && in_array($inc, array('view.inc.php', 'edit.inc.php'), true));
+
+if ($lpb_use_ticket_shell) {
+    $lpb_asset = ROOT_PATH . 'assets/lapor-pak-bas/';
+    $lpb_active = 'tickets';
+    $lpb_load_ticket_view_css = true;
+    $lpb_body_extra_class = 'lpb-ticket-view-page';
+    if ($inc === 'edit.inc.php') {
+        $title = sprintf(__('Editing Ticket #%s'), $ticket->getNumber());
+        if ($cfg && $cfg->getTitle()) {
+            $title .= ' — ' . $cfg->getTitle();
+        }
+    } else {
+        $sf = TicketForm::getInstance()->getField('subject');
+        $subj_display = $sf ? strip_tags($sf->display($ticket->getSubject())) : '';
+        $title = (trim($subj_display) !== '') ? $subj_display : __('Support Ticket');
+        $title .= ' #' . $ticket->getNumber();
+        if ($cfg && $cfg->getTitle()) {
+            $title .= ' — ' . $cfg->getTitle();
+        }
+    }
+    define('LPB_TICKET_SHELL', true);
+
+    require CLIENTINC_DIR . 'lpb-form-head.inc.php';
+    require CLIENTINC_DIR . 'lpb-chrome-header.inc.php';
+
+    if ($ost->getError()) {
+        echo sprintf('<div class="lpb-alert lpb-alert-error">%s</div>', $ost->getError());
+    } elseif ($ost->getWarning()) {
+        echo sprintf('<div class="lpb-alert lpb-alert-warning">%s</div>', $ost->getWarning());
+    } elseif ($ost->getNotice()) {
+        echo sprintf('<div class="lpb-alert lpb-alert-notice">%s</div>', $ost->getNotice());
+    }
+
+    echo '<div class="create-ticket-main lpb-ticket-shell-main"><div class="create-ticket-container"><div class="content-wrapper">';
+
+    require CLIENTINC_DIR . $inc;
+
+    echo '</div></div></div>';
+
+    print $tform->getMedia();
+
+    require CLIENTINC_DIR . 'lpb-chrome-footer.inc.php';
+    require CLIENTINC_DIR . 'lpb-form-foot.inc.php';
+} else {
+    include CLIENTINC_DIR . 'header.inc.php';
+    require CLIENTINC_DIR . $inc;
+    print $tform->getMedia();
+    include CLIENTINC_DIR . 'footer.inc.php';
+}
 ?>
