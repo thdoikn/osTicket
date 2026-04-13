@@ -322,6 +322,12 @@ body {
     transition: opacity 0.3s;
 }
 
+.header-nav .nav-link.nav-link--active {
+    font-weight: 700;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.95);
+    padding-bottom: 2px;
+}
+
 .nav-link:hover {
     opacity: 0.8;
 }

@@ -1,0 +1,254 @@
+/* osTicket open.php form inside Lapor Pak Bas chrome */
+
+.create-ticket-page .create-ticket-title-section .create-ticket-title span {
+    color: #C79F62;
+}
+
+.lpb-alert {
+    max-width: 960px;
+    margin: 16px auto 0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.lpb-alert-error {
+    background: #fdecea;
+    color: #c0392b;
+    border: 1px solid #f5c6cb;
+}
+
+.lpb-alert-warning {
+    background: #fff8e6;
+    color: #856404;
+    border: 1px solid #ffe69c;
+}
+
+.lpb-alert-notice {
+    background: #e7f3ff;
+    color: #0c5460;
+    border: 1px solid #b8daff;
+}
+
+.lpb-open-error {
+    background: #fdecea;
+    color: #c0392b;
+    padding: 14px 18px;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+    font-weight: bold;
+    margin-bottom: 8px;
+    height: auto;
+    min-height: 0;
+    line-height: 1.45;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+}
+
+.lpb-thankyou {
+    background: #fff;
+    padding: 40px 36px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 24px;
+    line-height: 1.6;
+}
+
+.create-ticket-page .lpb-open-table {
+    width: 100% !important;
+    border-collapse: collapse;
+}
+
+.create-ticket-page .lpb-open-table > tbody > tr > td,
+.create-ticket-page .lpb-open-table > tbody > tr > th {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 8px 0;
+}
+
+.create-ticket-page .lpb-open-table > tbody > tr > td[colspan="2"] {
+    padding-top: 12px;
+}
+
+.create-ticket-page .lpb-open-table hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 16px 0;
+}
+
+.create-ticket-page .lpb-form-section-heading .form-section-title {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #222;
+}
+
+.create-ticket-page .lpb-help-topic-label {
+    font-size: 16px;
+    color: #222;
+}
+
+.create-ticket-page #topicId,
+.create-ticket-page .lpb-open-table select {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    background: #fff;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.create-ticket-page #topicId:focus,
+.create-ticket-page .lpb-open-table input[type="text"]:focus,
+.create-ticket-page .lpb-open-table input[type="email"]:focus,
+.create-ticket-page .lpb-open-table input[type="tel"]:focus,
+.create-ticket-page .lpb-open-table textarea:focus {
+    border-color: #C79F62;
+    outline: none;
+}
+
+.create-ticket-page .lpb-open-table input[type="text"],
+.create-ticket-page .lpb-open-table input[type="email"],
+.create-ticket-page .lpb-open-table input[type="tel"],
+.create-ticket-page .lpb-open-table input[type="number"],
+.create-ticket-page .lpb-open-table input[type="date"],
+.create-ticket-page .lpb-open-table input[type="password"] {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.create-ticket-page .lpb-open-table textarea {
+    width: 100%;
+    max-width: 100%;
+    min-height: 120px;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.create-ticket-page .lpb-open-table label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.create-ticket-page .lpb-open-table label span.required {
+    color: #c0392b;
+}
+
+.create-ticket-page .redactor-box,
+.create-ticket-page .redactor-layer {
+    border-radius: 8px !important;
+    border-color: #e0e0e0 !important;
+}
+
+.create-ticket-page .redactor-toolbar {
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.create-ticket-page .captchaRow td {
+    display: block;
+}
+
+.create-ticket-page .captchaRow .captcha img {
+    vertical-align: middle;
+    border-radius: 4px;
+}
+
+.create-ticket-page .captchaRow input#captcha {
+    width: auto;
+    max-width: 120px;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.create-ticket-page .lpb-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px 16px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+}
+
+/* Primary submit: always gold + white label (override browser :invalid dimming) */
+.create-ticket-page #ticketForm button.btn-submit-report,
+.create-ticket-page #ticketForm:invalid button.btn-submit-report[type="submit"] {
+    min-width: 200px;
+    padding: 16px 60px;
+    background: linear-gradient(135deg, #C79F62 0%, #b89050 100%) !important;
+    border: none !important;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff !important;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(199, 159, 98, 0.3);
+    -webkit-appearance: none;
+    appearance: none;
+    opacity: 1 !important;
+}
+
+.create-ticket-page #ticketForm button.btn-submit-report:hover {
+    background: linear-gradient(135deg, #b89050 0%, #a67d40 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(199, 159, 98, 0.4);
+}
+
+.create-ticket-page #ticketForm button.btn-submit-report span {
+    color: #fff !important;
+}
+
+.create-ticket-page .lpb-btn-secondary,
+.create-ticket-page .lpb-btn-cancel {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #444;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.create-ticket-page .lpb-btn-secondary:hover,
+.create-ticket-page .lpb-btn-cancel:hover {
+    border-color: #C79F62;
+    color: #333;
+}
+
+.create-ticket-page .lpb-btn-cancel {
+    background: #f8f8f8;
+}
+
+.create-ticket-page .form-header h3 {
+    margin: 0.5em 0 0.25em;
+    font-size: 17px;
+    color: #222;
+}
+
+.create-ticket-page .form-header div {
+    color: #555;
+    font-size: 14px;
+}
+
+.create-ticket-page .filedrop {
+    border-radius: 8px;
+}

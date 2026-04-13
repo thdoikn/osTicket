@@ -30,49 +30,10 @@ $lpb_whatsapp_url = $lpb_whatsapp_number !== ''
     <link rel="stylesheet" href="<?php echo Format::htmlchars($lpb_asset); ?>style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-container">
-            <div class="header-left">
-                <div class="logo">
-                    <img src="<?php echo Format::htmlchars($lpb_asset); ?>asset/logo.png" alt="" class="logo-img">
-                </div>
-            </div>
-            <div class="header-center">
-                <nav class="header-nav">
-                    <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>index.php" class="nav-link" data-i18n="navHome">Beranda</a>
-                    <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>open.php" class="nav-link" data-i18n="navReport">Lapor</a>
-                    <div class="nav-dropdown">
-                        <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>view.php" class="nav-link" data-i18n="navCheckStatus">Cek Status Laporan</a>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 4.5 L6 7.5 L9 4.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </nav>
-            </div>
-            <div class="header-right">
-<?php if ($client_logged_in) { ?>
-                <span class="nav-link"><?php echo Format::htmlchars($thisclient->getName()); ?></span>
-                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>profile.php" class="nav-link"><?php echo __('Profile'); ?></a>
-                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php" class="nav-link"><?php
-                    echo sprintf(__('Tickets (%d)'), $thisclient->getNumTickets()); ?></a>
-                <a href="<?php echo Format::htmlchars($signout_url); ?>" class="nav-link login-link"><?php echo __('Sign Out'); ?></a>
-<?php } else { ?>
-                <a href="<?php echo Format::htmlchars($signin_url); ?>" class="nav-link login-link" data-i18n="navLogin">Masuk</a>
-<?php } ?>
-                <div class="language-selector" id="languageSelector">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="9" cy="9" r="7" stroke="white" stroke-width="1.5"/>
-                        <path d="M9 2 C11 4, 13 6, 9 9 C5 6, 7 4, 9 2" fill="white"/>
-                        <path d="M9 9 C11 11, 13 13, 9 16 C5 13, 7 11, 9 9" fill="white"/>
-                    </svg>
-                    <span id="currentLang">IDN</span>
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 4.5 L6 7.5 L9 4.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </header>
+<?php
+$lpb_active = 'home';
+require CLIENTINC_DIR . 'lpb-chrome-header.inc.php';
+?>
 
     <main class="hero-section">
         <div class="hero-background">
@@ -178,41 +139,7 @@ $lpb_whatsapp_url = $lpb_whatsapp_number !== ''
         </div>
     </section>
 
-    <footer class="main-footer">
-        <div class="footer-pattern-top"></div>
-        <div class="footer-container">
-            <div class="footer-column footer-logo">
-                <div class="footer-logo-section">
-                    <img src="<?php echo Format::htmlchars($lpb_asset); ?>asset/logo1.png" alt="" class="footer-logo-img">
-                </div>
-                <div class="footer-address">
-                    <p class="footer-address-item">
-                        Kantor Nusantara Balai Kota/City Hall, Ibu Kota Nusantara, Pemaluan, Kec. Sepaku, Kabupaten Penajam Paser Utara, Kalimantan Timur (76147)
-                    </p>
-                    <p class="footer-address-item">
-                        Kantor Jakarta Menara Mandiri II Lantai 5, Jalan Jenderal Sudirman Kav 54-55, Senayan, Jakarta Selatan, Jakarta (12190)
-                    </p>
-                </div>
-            </div>
-            <div class="footer-column footer-nav">
-                <h3 class="footer-title" data-i18n="footerNav">Navigasi</h3>
-                <ul class="footer-links">
-                    <li><a href="<?php echo Format::htmlchars(ROOT_PATH); ?>index.php" data-i18n="navHome">Beranda</a></li>
-                    <li><a href="<?php echo Format::htmlchars(ROOT_PATH); ?>open.php" data-i18n="navReport">Lapor</a></li>
-                    <li><a href="<?php echo Format::htmlchars(ROOT_PATH); ?>view.php" data-i18n="navCheckStatus">Cek Status Laporan</a></li>
-                </ul>
-            </div>
-            <div class="footer-column footer-links-column">
-                <h3 class="footer-title" data-i18n="footerLinks">Pranala</h3>
-                <ul class="footer-links">
-                    <li><a href="#" data-i18n="linkOfficial">Situs Resmi IKN</a></li>
-                    <li><a href="#" data-i18n="linkMonitoring">Monitoring Proyek IKN</a></li>
-                    <li><a href="#" data-i18n="linkInvestment">Investasi</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-pattern-bottom"></div>
-    </footer>
+<?php require CLIENTINC_DIR . 'lpb-chrome-footer.inc.php'; ?>
 
     <script>
         const translations = {
