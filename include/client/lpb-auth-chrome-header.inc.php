@@ -8,6 +8,16 @@ if (!isset($lpb_asset)) {
 if (!isset($lpb_auth_page)) {
     $lpb_auth_page = 'login';
 }
+if (!isset($signin_url)) {
+    $signin_url = ROOT_PATH . 'login.php'
+        . ($thisclient ? '?e=' . urlencode($thisclient->getEmail()) : '');
+}
+if (!isset($signout_url)) {
+    $signout_url = ROOT_PATH . 'logout.php?auth=' . $ost->getLinkToken();
+}
+if (!isset($client_logged_in)) {
+    $client_logged_in = $thisclient && $thisclient->isValid() && !$thisclient->isGuest();
+}
 ?>
     <header class="signin-header">
         <div class="signin-header-container">
@@ -32,6 +42,15 @@ if (!isset($lpb_auth_page)) {
                 </nav>
             </div>
             <div class="signin-header-right">
+<?php if ($client_logged_in) { ?>
+                <span class="nav-link"><?php echo Format::htmlchars($thisclient->getName()); ?></span>
+                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>profile.php" class="nav-link"><?php echo __('Profile'); ?></a>
+                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php" class="nav-link"><?php
+                    echo sprintf(__('Tickets (%d)'), $thisclient->getNumTickets()); ?></a>
+                <a href="<?php echo Format::htmlchars($signout_url); ?>" class="nav-link login-link"><?php echo __('Sign Out'); ?></a>
+<?php } else { ?>
+                <a href="<?php echo Format::htmlchars($signin_url); ?>" class="nav-link login-link" data-i18n="navLogin">Masuk</a>
+<?php } ?>
                 <div class="language-selector" id="languageSelector">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="9" cy="9" r="7" stroke="white" stroke-width="1.5"/>

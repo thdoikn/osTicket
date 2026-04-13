@@ -240,6 +240,18 @@ body.signin-page .signin-right {
     margin-left: 6px;
 }
 
+.lpb-auth-content .register-link a.lpb-access-create-report {
+    color: #000;
+}
+
+.lpb-auth-content .register-link a.lpb-access-create-report .link-accent {
+    color: #C79F62;
+}
+
+.lpb-auth-content .register-link a.lpb-access-create-report:hover .link-accent {
+    color: #b88a4f;
+}
+
 .lpb-auth-content .lpb-auth-footer-note {
     margin-top: 28px;
     font-size: 14px;
