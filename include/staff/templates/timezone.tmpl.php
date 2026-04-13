@@ -27,13 +27,18 @@ var recheck = setInterval(function() {
 
     }
 }, 100);
-return false;" style="vertical-align:middle"><i class="icon-map-marker"></i> <?php echo __('Auto Detect'); ?></button>
+return false;" style="vertical-align:middle"><i class="icon-map-marker"></i> <?php
+if (!empty($GLOBALS['lpb_auth_timezone_i18n'])) { ?>
+<span data-i18n="timezoneAutoDetect"><?php }
+echo __('Auto Detect');
+if (!empty($GLOBALS['lpb_auth_timezone_i18n'])) { ?></span><?php }
+?></button>
 
 <script type="text/javascript">
 $(function() {
     $('#timezone-dropdown').select2({
         allowClear: <?php echo $TZ_ALLOW_DEFAULT ? 'true' : 'false'; ?>,
-        width: '300px'
+        width: '<?php echo !empty($GLOBALS['lpb_auth_timezone_i18n']) ? '100%' : '300px'; ?>'
     });
 });
 </script>
