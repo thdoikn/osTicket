@@ -30,6 +30,41 @@
     border: 1px solid #b8daff;
 }
 
+.lpb-thankyou .lpb-alert-success {
+    max-width: none;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 0 20px;
+    padding: 14px 18px 14px 16px;
+}
+
+.lpb-alert-success {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #43a047;
+    line-height: 1.45;
+    min-height: 0;
+}
+
+.lpb-alert-success::before {
+    content: "\2713";
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #2e7d32;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+}
+
 .lpb-open-error {
     background: #fdecea;
     color: #c0392b;

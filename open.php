@@ -106,6 +106,9 @@ if ($ticket
     )
 ) {
     echo '<main class="create-ticket-main"><div class="create-ticket-container"><div class="content-wrapper lpb-thankyou">';
+    if (!empty($msg)) {
+        echo '<div class="lpb-alert lpb-alert-success" role="status">', $msg, '</div>';
+    }
     echo Format::viewableImages(
         $ticket->replaceVars(
             $page->getLocalBody()
