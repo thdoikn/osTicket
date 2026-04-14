@@ -352,18 +352,6 @@ body {
     margin-right: 5px;
 }
 
-.nav-dropdown {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-}
-
-.nav-dropdown svg {
-    width: 12px;
-    height: 12px;
-}
-
 /* FAQ Section */
 .faq-section {
     background: white;

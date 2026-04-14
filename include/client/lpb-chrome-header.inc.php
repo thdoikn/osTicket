@@ -33,12 +33,7 @@ $lpb_nav_active = function ($key) use ($lpb_active) {
                 <nav class="header-nav">
                     <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>index.php" class="nav-link<?php echo $lpb_nav_active('home'); ?>" data-i18n="navHome">Beranda</a>
                     <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>open.php" class="nav-link<?php echo $lpb_nav_active('open'); ?>" data-i18n="navReport">Lapor</a>
-                    <div class="nav-dropdown">
-                        <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>view.php" class="nav-link" data-i18n="navCheckStatus">Cek Status Laporan</a>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 4.5 L6 7.5 L9 4.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
+                    <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>view.php" class="nav-link" data-i18n="navCheckStatus">Cek Status Laporan</a>
                 </nav>
             </div>
             <div class="header-right">
@@ -48,8 +43,6 @@ $lpb_nav_active = function ($key) use ($lpb_active) {
                 <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php" class="nav-link"><?php
                     echo sprintf(__('Tickets (%d)'), $thisclient->getNumTickets()); ?></a>
                 <a href="<?php echo Format::htmlchars($signout_url); ?>" class="nav-link login-link"><?php echo __('Sign Out'); ?></a>
-<?php } else { ?>
-                <a href="<?php echo Format::htmlchars($signin_url); ?>" class="nav-link login-link" data-i18n="navLogin">Masuk</a>
 <?php } ?>
                 <div class="language-selector" id="languageSelector">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
