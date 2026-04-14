@@ -127,7 +127,7 @@ require CLIENTINC_DIR . 'lpb-chrome-header.inc.php';
 
     <section class="whatsapp-section">
         <div class="whatsapp-background">
-            <img src="<?php echo Format::htmlchars($lpb_asset); ?>asset/whatsapp-bg.webp" alt="" class="whatsapp-bg-img">
+            <img src="<?php echo Format::htmlchars($lpb_asset); ?>asset/IstanaGarudaView.webp" alt="" class="whatsapp-bg-img">
             <div class="whatsapp-overlay"></div>
         </div>
         <div class="whatsapp-content">
