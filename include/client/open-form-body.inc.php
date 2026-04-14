@@ -29,14 +29,14 @@ if (!$thisclient) { ?>
 <?php } ?>
                     </tbody>
                     <tbody>
-                        <tr><td colspan="2"><hr />
-                            <div class="form-header lpb-help-topic-label" style="margin-bottom:0.5em">
-                                <b><?php echo __('Help Topic'); ?></b>
-                            </div>
-                        </td></tr>
+                        <tr><td colspan="2"><hr /></td></tr>
                         <tr>
-                            <td colspan="2">
-                                <select id="topicId" name="topicId" onchange="javascript:
+                            <td colspan="2" style="padding-top:10px;">
+                                <div class="form-header" style="margin-bottom:0.5em">
+                                    <label for="topicId">
+                                        <span class="required"><b><?php echo __('Help Topic'); ?></b><span class="error">*</span></span>
+                                        <br/>
+                                        <select id="topicId" name="topicId" onchange="javascript:
                     var data = $(':input[name]', '#dynamic-form').serialize();
                     $.ajax(
                       'ajax.php/form/help-topic/' + this.value,
@@ -48,20 +48,25 @@ if (!$thisclient) { ?>
                           $(document.head).append(json.media);
                         }
                       });">
-                                    <option value="" selected="selected">&mdash; <?php echo __('Select a Help Topic'); ?> &mdash;</option>
+                                            <option value="" selected="selected">&mdash; <?php echo __('Select a Help Topic'); ?> &mdash;</option>
+                                            <?php
+                                            if ($topics = Topic::getPublicHelpTopics()) {
+                                                foreach ($topics as $id => $name) {
+                                                    echo sprintf(
+                                                        '<option value="%d" %s>%s</option>',
+                                                        $id,
+                                                        ($info['topicId'] == $id) ? 'selected="selected"' : '',
+                                                        $name
+                                                    );
+                                                }
+                                            } ?>
+                                        </select>
+                                    </label>
                                     <?php
-                                    if ($topics = Topic::getPublicHelpTopics()) {
-                                        foreach ($topics as $id => $name) {
-                                            echo sprintf(
-                                                '<option value="%d" %s>%s</option>',
-                                                $id,
-                                                ($info['topicId'] == $id) ? 'selected="selected"' : '',
-                                                $name
-                                            );
-                                        }
-                                    } ?>
-                                </select>
-                                <font class="error">*&nbsp;<?php echo $errors['topicId']; ?></font>
+                                    if (!empty($errors['topicId'])) { ?>
+                                        <div class="error"><?php echo Format::htmlchars($errors['topicId']); ?></div>
+                                    <?php } ?>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

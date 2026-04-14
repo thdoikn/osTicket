@@ -118,11 +118,6 @@
     color: #222;
 }
 
-.create-ticket-page .lpb-help-topic-label {
-    font-size: 16px;
-    color: #222;
-}
-
 .create-ticket-page #topicId,
 .create-ticket-page .lpb-open-table select {
     width: 100%;
