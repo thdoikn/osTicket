@@ -1,27 +1,33 @@
 <?php
-if(!defined('OSTCLIENTINC')) die('Access Denied!');
-$info=array();
-if($thisclient && $thisclient->isValid()) {
-    $info=array('name'=>$thisclient->getName(),
-                'email'=>$thisclient->getEmail(),
-                'phone'=>$thisclient->getPhoneNumber());
+if (!defined('OSTCLIENTINC')) {
+    die('Access Denied!');
+}
+$info = array();
+if ($thisclient && $thisclient->isValid()) {
+    $info = array(
+        'name' => $thisclient->getName(),
+        'email' => $thisclient->getEmail(),
+        'phone' => $thisclient->getPhoneNumber(),
+    );
 }
 
-$info=($_POST && $errors)?Format::htmlchars($_POST):$info;
+$info = ($_POST && $errors) ? Format::htmlchars($_POST) : $info;
 
 $form = null;
 if (!$info['topicId']) {
-    if (array_key_exists('topicId',$_GET) && preg_match('/^\d+$/',$_GET['topicId']) && Topic::lookup($_GET['topicId']))
+    if (array_key_exists('topicId', $_GET) && preg_match('/^\d+$/', $_GET['topicId']) && Topic::lookup($_GET['topicId'])) {
         $info['topicId'] = intval($_GET['topicId']);
-    else
+    } else {
         $info['topicId'] = $cfg->getDefaultTopicId();
+    }
 }
 
 $forms = array();
-if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
+if ($info['topicId'] && ($topic = Topic::lookup($info['topicId']))) {
     foreach ($topic->getForms() as $F) {
-        if (!$F->hasAnyVisibleFields())
+        if (!$F->hasAnyVisibleFields()) {
             continue;
+        }
         if ($_POST) {
             $F = $F->instanciate();
             $F->isValidForClient();
@@ -30,99 +36,47 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
     }
 }
 
-?>
-<h1><?php echo __('Open a New Ticket');?></h1>
-<p><?php echo __('Please fill in the form below to open a new ticket.');?></p>
-<form id="ticketForm" method="post" action="open.php" enctype="multipart/form-data">
-  <?php csrf_token(); ?>
-  <input type="hidden" name="a" value="open">
-  <table width="800" cellpadding="1" cellspacing="0" border="0">
-    <tbody>
-<?php
-        if (!$thisclient) {
-            $uform = UserForm::getUserForm()->getForm($_POST);
-            if ($_POST) $uform->isValid();
-            $uform->render(array('staff' => false, 'mode' => 'create'));
-        }
-        else { ?>
-            <tr><td colspan="2"><hr /></td></tr>
-        <tr><td><?php echo __('Email'); ?>:</td><td><?php
-            echo $thisclient->getEmail(); ?></td></tr>
-        <tr><td><?php echo __('Client'); ?>:</td><td><?php
-            echo Format::htmlchars($thisclient->getName()); ?></td></tr>
-        <?php } ?>
-    </tbody>
-    <tbody>
-    <tr><td colspan="2"><hr />
-        <div class="form-header" style="margin-bottom:0.5em">
-        <b><?php echo __('Help Topic'); ?></b>
+$lpb_open_standalone = defined('LPB_OPEN_STANDALONE') && LPB_OPEN_STANDALONE;
+
+if ($lpb_open_standalone) {
+    ?>
+<main class="create-ticket-main">
+    <div class="create-ticket-container">
+        <div class="content-wrapper">
+            <div class="breadcrumb-section">
+                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>index.php" class="breadcrumb-link">
+                    <svg class="breadcrumb-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.5 15 L7.5 10 L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    ← <span data-i18n="backHome">Kembali ke Beranda</span>
+                </a>
+                <div class="breadcrumb-path">
+                    <span data-i18n="navHome">Beranda</span>
+                    <span class="breadcrumb-separator">/</span>
+                    <span data-i18n="breadcrumbOpen">Buat Tiket Baru</span>
+                </div>
+            </div>
+            <div class="create-ticket-title-section">
+                <h1 class="create-ticket-title">
+                    <span data-i18n="openPageTitle">Buat Tiket Baru</span>
+                </h1>
+                <p class="create-ticket-description" data-i18n="openPageDesc">Silahkan mengisi form dibawah untuk membuat tiket Laporan yang baru</p>
+            </div>
         </div>
-    </td></tr>
-    <tr>
-        <td colspan="2">
-            <select id="topicId" name="topicId" onchange="javascript:
-                    var data = $(':input[name]', '#dynamic-form').serialize();
-                    $.ajax(
-                      'ajax.php/form/help-topic/' + this.value,
-                      {
-                        data: data,
-                        dataType: 'json',
-                        success: function(json) {
-                          $('#dynamic-form').empty().append(json.html);
-                          $(document.head).append(json.media);
-                        }
-                      });">
-                <option value="" selected="selected">&mdash; <?php echo __('Select a Help Topic');?> &mdash;</option>
-                <?php
-                if($topics=Topic::getPublicHelpTopics()) {
-                    foreach($topics as $id =>$name) {
-                        echo sprintf('<option value="%d" %s>%s</option>',
-                                $id, ($info['topicId']==$id)?'selected="selected"':'', $name);
-                    }
-                } ?>
-            </select>
-            <font class="error">*&nbsp;<?php echo $errors['topicId']; ?></font>
-        </td>
-    </tr>
-    </tbody>
-    <tbody id="dynamic-form">
-        <?php
-        $options = array('mode' => 'create');
-        foreach ($forms as $form) {
-            include(CLIENTINC_DIR . 'templates/dynamic-form.tmpl.php');
-        } ?>
-    </tbody>
-    <tbody>
-    <?php
-    if($cfg && $cfg->isCaptchaEnabled() && (!$thisclient || !$thisclient->isValid())) {
-        if($_POST && $errors && !$errors['captcha'])
-            $errors['captcha']=__('Please re-enter the text again');
-        ?>
-    <tr class="captchaRow">
-        <td class="required"><?php echo __('CAPTCHA Text');?>:</td>
-        <td>
-            <span class="captcha"><img src="captcha.php" border="0" align="left"></span>
-            &nbsp;&nbsp;
-            <input id="captcha" type="text" name="captcha" size="6" autocomplete="off">
-            <em><?php echo __('Enter the text shown on the image.');?></em>
-            <font class="error">*&nbsp;<?php echo $errors['captcha']; ?></font>
-        </td>
-    </tr>
-    <?php
-    } ?>
-    <tr><td colspan=2>&nbsp;</td></tr>
-    </tbody>
-  </table>
-<hr/>
-  <p class="buttons" style="text-align:center;">
-        <input type="submit" value="<?php echo __('Create Ticket');?>">
-        <input type="reset" name="reset" value="<?php echo __('Reset');?>">
-        <input type="button" name="cancel" value="<?php echo __('Cancel'); ?>" onclick="javascript:
-            $('.richtext').each(function() {
-                var redactor = $(this).data('redactor');
-                if (redactor && redactor.opts.draftDelete)
-                    redactor.plugin.draft.deleteDraft();
-            });
-            window.location.href='index.php';">
-  </p>
-</form>
+<?php if (!empty($errors['err'])) { ?>
+        <div class="content-wrapper">
+            <div class="lpb-open-error" role="alert"><?php echo Format::htmlchars($errors['err']); ?></div>
+        </div>
+<?php } ?>
+        <div class="content-wrapper">
+    <?php include CLIENTINC_DIR . 'open-form-body.inc.php'; ?>
+        </div>
+    </div>
+</main>
+<?php
+} else {
+    ?>
+<h1><?php echo __('Open a New Ticket'); ?></h1>
+<p><?php echo __('Please fill in the form below to open a new ticket.'); ?></p>
+    <?php include CLIENTINC_DIR . 'open-form-body.inc.php';
+}

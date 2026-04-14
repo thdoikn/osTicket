@@ -1,0 +1,420 @@
+/* LPB auth shell: osTicket forms inside signin layout */
+
+/*
+ * This stylesheet is only linked on LPB auth pages (login/register).
+ * Lock the viewport to one scrollbar (inside .signin-right).
+ * Use padding-top for the fixed header — margin-top on the container was
+ * extending total document height and exposing the theme body background
+ * as a grey band plus a second scrollbar on html.
+ */
+html {
+    height: 100%;
+    overflow: hidden;
+    overflow-x: hidden;
+}
+
+body.signin-page {
+    margin: 0;
+    height: 100%;
+    max-height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-top: 70px;
+    background: #fff;
+}
+
+body.signin-page .signin-container {
+    margin-top: 0;
+    height: 100%;
+    max-height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+}
+
+body.signin-page .signin-left {
+    flex: 0 0 60%;
+    height: 100%;
+    min-height: 0;
+    align-self: stretch;
+    overflow: hidden;
+}
+
+body.signin-page .signin-image-wrapper {
+    height: 100%;
+    min-height: 0;
+}
+
+/* style.css sets min-height:100% here — can contribute to nested/double scroll */
+body.signin-page .signin-content {
+    min-height: 0 !important;
+    flex: 1 1 auto;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+body.signin-page .signin-right {
+    flex: 0 0 40%;
+    height: 100%;
+    min-height: 0;
+    max-height: 100%;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+    body.signin-page {
+        padding-top: 60px;
+    }
+}
+
+.signin-logo-link {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+}
+
+.lpb-auth-content .lpb-auth-error,
+.lpb-auth-content .lpb-auth-msg {
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.lpb-auth-content .lpb-auth-error {
+    background: #fdeaea;
+    border: 1px solid #f5c2c7;
+    color: #842029;
+}
+
+.lpb-auth-content .lpb-auth-msg {
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    color: #1b5e20;
+}
+
+.lpb-auth-content .welcome-description {
+    margin-top: 0;
+}
+
+/* Remove legacy osTicket #clientLogin panel (border, lock, grey box) */
+#clientLogin.lpb-client-login-form {
+    margin-top: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent none !important;
+}
+
+#clientLogin.lpb-client-login-form .instructions {
+    display: block !important;
+    padding: 0 !important;
+}
+
+/* Single-column LPB-style login stack */
+#clientLogin.lpb-client-login-form .lpb-login-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 440px;
+}
+
+#clientLogin.lpb-client-login-form .login-box {
+    width: 100%;
+    min-width: 0;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+#clientLogin.lpb-client-login-form .form-group {
+    margin-bottom: 22px;
+}
+
+#clientLogin.lpb-client-login-form .login-box label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+#clientLogin.lpb-client-login-form .login-box input[type="text"],
+#clientLogin.lpb-client-login-form .login-box input[type="password"],
+#clientLogin.lpb-client-login-form .login-box input[type="email"] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    background: #fff;
+    color: #333;
+}
+
+#clientLogin.lpb-client-login-form .login-box input:focus {
+    border-color: #C79F62;
+}
+
+#clientLogin.lpb-client-login-form .password-input-wrapper input {
+    padding-right: 48px;
+}
+
+#clientLogin.lpb-client-login-form .lpb-login-secondary {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    line-height: 1.65;
+    font-weight: bold;
+    color: #333;
+}
+
+#clientLogin.lpb-client-login-form .lpb-login-secondary .external-auth {
+    margin-bottom: 14px;
+}
+
+#clientLogin.lpb-client-login-form .lpb-login-divider {
+    margin: 16px 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+}
+
+#clientLogin.lpb-client-login-form .lpb-login-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+#clientLogin.lpb-client-login-form .btn-signin,
+#clientLogin.lpb-client-login-form button.btn-signin,
+#clientLogin.lpb-client-login-form input.btn[type="submit"] {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 30px;
+    background: linear-gradient(180deg, #D4A574 0%, #C79F62 100%);
+    color: #fff !important;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+#clientLogin.lpb-client-login-form .lpb-login-actions .lpb-forgot-link {
+    font-weight: bold;
+    color: #C79F62;
+    text-decoration: none;
+    text-align: center;
+}
+
+#clientLogin.lpb-client-login-form .lpb-login-actions .lpb-forgot-link:hover {
+    text-decoration: underline;
+}
+
+.lpb-access-reg-extra {
+    display: inline;
+}
+
+.lpb-auth-content .register-link {
+    margin-top: 24px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.lpb-auth-content .register-link a {
+    color: #C79F62;
+    margin-left: 6px;
+}
+
+.lpb-auth-content .register-link a.lpb-access-create-report {
+    color: #000;
+}
+
+.lpb-auth-content .register-link a.lpb-access-create-report .link-accent {
+    color: #C79F62;
+}
+
+.lpb-auth-content .register-link a.lpb-access-create-report:hover .link-accent {
+    color: #b88a4f;
+}
+
+.lpb-auth-content .lpb-auth-footer-note {
+    margin-top: 28px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    font-weight: bold;
+}
+
+.lpb-auth-content .lpb-auth-footer-note a {
+    color: #C79F62;
+}
+
+.lpb-auth-content .signin-form-footer {
+    margin-top: auto;
+    padding-top: 32px;
+}
+
+.lpb-auth-content .lpb-agent-note {
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.lpb-auth-content .lpb-agent-note a {
+    color: #C79F62;
+}
+
+/* Register: only top-level rows — do not force all nested td to block */
+.lpb-register-wrap > form > table.padded {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.lpb-register-wrap > form > table.padded > tbody > tr {
+    display: table-row;
+}
+
+.lpb-register-wrap > form > table.padded > tbody > tr > td {
+    display: table-cell;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 10px 0 !important;
+}
+
+.lpb-register-wrap > form > table.padded > tbody > tr > td[colspan="2"] {
+    width: 100%;
+}
+
+.lpb-register-wrap > form > table.padded > tbody > tr > td:first-child:not([colspan]) {
+    width: 38%;
+    max-width: 220px;
+    padding-right: 16px !important;
+    font-weight: bold;
+    color: #000;
+}
+
+@media (max-width: 640px) {
+    .lpb-register-wrap > form > table.padded > tbody > tr > td,
+    .lpb-register-wrap > form > table.padded > tbody > tr > td:first-child:not([colspan]) {
+        display: block;
+        width: 100% !important;
+        max-width: none;
+        padding-right: 0 !important;
+    }
+}
+
+.lpb-register-wrap > form > table.padded label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #000;
+    line-height: 1.4;
+}
+
+.lpb-register-wrap > form > table.padded input[type="text"],
+.lpb-register-wrap > form > table.padded input[type="email"],
+.lpb-register-wrap > form > table.padded input[type="password"],
+.lpb-register-wrap > form > table.padded input[type="tel"],
+.lpb-register-wrap > form > table.padded select,
+.lpb-register-wrap > form > table.padded textarea {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 12px 14px;
+    border: 1px solid #e0e0e0;
+    font-size: 15px;
+}
+
+.lpb-register-wrap > form > table.padded input[type="text"][size="5"],
+.lpb-register-wrap > form > table.padded input[size="5"] {
+    width: auto;
+    min-width: 4em;
+}
+
+.lpb-register-wrap > form > table.padded input:focus,
+.lpb-register-wrap > form > table.padded select:focus,
+.lpb-register-wrap > form > table.padded textarea:focus {
+    border-color: #C79F62;
+    outline: none;
+}
+
+.lpb-register-wrap .select2-container {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0 !important;
+}
+
+.lpb-register-wrap .action-button {
+    margin-top: 8px;
+    margin-left: 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background: #f7f7f7;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.lpb-register-wrap .form-header h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #333;
+}
+
+.lpb-register-wrap .lpb-register-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.lpb-register-wrap .lpb-register-actions input[type="submit"],
+.lpb-register-wrap .lpb-register-actions input[type="button"] {
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 4px;
+}
+
+.lpb-register-wrap .lpb-register-actions input[type="submit"] {
+    background: linear-gradient(180deg, #D4A574 0%, #C79F62 100%);
+    color: #fff !important;
+    border: none;
+}
+
+.lpb-register-wrap .lpb-register-actions input[type="button"] {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.lpb-register-wrap h3 {
+    margin: 16px 0 8px;
+    font-size: 17px;
+    color: #333;
+}
+
+.lpb-register-confirm-body {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.65;
+    font-weight: bold;
+}

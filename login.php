@@ -147,7 +147,30 @@ if (!$nav) {
     $nav->setActiveNav('status');
 }
 
-require CLIENTINC_DIR.'header.inc.php';
-require CLIENTINC_DIR.$inc;
-require CLIENTINC_DIR.'footer.inc.php';
+$lpb_use_auth_shell = true;
+if ($inc === 'login.inc.php') {
+    $lpb_auth_page = 'login';
+    $title = isset($title) ? $title : __('Sign In');
+} elseif ($inc === 'accesslink.inc.php') {
+    $lpb_auth_page = 'access';
+    $title = isset($title) ? $title : __('Check Ticket Status');
+} elseif ($inc === 'register.inc.php') {
+    $lpb_auth_page = 'register';
+    $title = isset($title) ? $title : __('Account Registration');
+} else {
+    $lpb_use_auth_shell = false;
+}
+
+if ($lpb_use_auth_shell) {
+    require CLIENTINC_DIR . 'lpb-auth-head.inc.php';
+    require CLIENTINC_DIR . 'lpb-auth-chrome-header.inc.php';
+    require CLIENTINC_DIR . 'lpb-auth-layout-start.inc.php';
+    require CLIENTINC_DIR . $inc;
+    require CLIENTINC_DIR . 'lpb-auth-layout-end.inc.php';
+    require CLIENTINC_DIR . 'lpb-auth-foot.inc.php';
+} else {
+    require CLIENTINC_DIR . 'header.inc.php';
+    require CLIENTINC_DIR . $inc;
+    require CLIENTINC_DIR . 'footer.inc.php';
+}
 ?>

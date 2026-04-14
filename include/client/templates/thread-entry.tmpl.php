@@ -25,18 +25,28 @@ if ($cfg->isAvatarsEnabled() && $user)
         <?php if ($entry->flags & ThreadEntry::FLAG_EDITED) { ?>
                 <span class="label label-bare" title="<?php
         echo sprintf(__('Edited on %s by %s'), Format::datetime($entry->updated), 'You');
-                ?>"><?php echo __('Edited'); ?></span>
+                ?>"><?php
+            if (defined('LPB_TICKET_SHELL') && LPB_TICKET_SHELL) { ?>
+                <span data-i18n="threadEditedBadge">Disunting</span>
+<?php
+            } else {
+                echo __('Edited');
+            } ?></span>
         <?php } ?>
             </span>
         </div>
 <?php
-            echo sprintf(__('<b>%s</b> posted %s'), $name,
-                sprintf('<time datetime="%s" title="%s">%s</time>',
-                    date(DateTime::W3C, Misc::db2gmtime($entry->created)),
-                    Format::daydatetime($entry->created),
-                    Format::datetime($entry->created)
-                )
-            ); ?>
+            $timeHtml = sprintf('<time datetime="%s" title="%s">%s</time>',
+                date(DateTime::W3C, Misc::db2gmtime($entry->created)),
+                Format::daydatetime($entry->created),
+                Format::datetime($entry->created)
+            );
+            if (defined('LPB_TICKET_SHELL') && LPB_TICKET_SHELL) {
+                echo '<b>', Format::htmlchars($name), '</b> <span data-i18n="threadPostedVerb">mengirim</span> ', $timeHtml;
+            } else {
+                echo sprintf(__('<b>%s</b> posted %s'), $name, $timeHtml);
+            }
+            ?>
             <span style="max-width:500px" class="faded title truncate"><?php
                 echo $entry->title; ?>
             </span>

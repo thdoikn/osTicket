@@ -46,7 +46,13 @@ $nav = new UserNav();
 $nav->setActiveNav('status');
 
 $inc = 'accesslink.inc.php';
-require CLIENTINC_DIR.'header.inc.php';
-require CLIENTINC_DIR.$inc;
-require CLIENTINC_DIR.'footer.inc.php';
+$lpb_auth_page = 'access';
+$title = isset($title) ? $title : __('Check Ticket Status');
+
+require CLIENTINC_DIR . 'lpb-auth-head.inc.php';
+require CLIENTINC_DIR . 'lpb-auth-chrome-header.inc.php';
+require CLIENTINC_DIR . 'lpb-auth-layout-start.inc.php';
+require CLIENTINC_DIR . $inc;
+require CLIENTINC_DIR . 'lpb-auth-layout-end.inc.php';
+require CLIENTINC_DIR . 'lpb-auth-foot.inc.php';
 ?>
