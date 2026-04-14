@@ -421,15 +421,37 @@ body {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 500px;
+    max-height: 2500px;
 }
 
-.faq-answer p {
-    padding: 0 25px 20px 25px;
+.faq-answer p,
+.faq-answer-lead {
+    padding: 10px 25px 20px 25px;
     color: #666;
     font-size: 14px;
     font-weight: bold;
     line-height: 1.6;
+}
+
+.faq-answer-lead {
+    padding-bottom: 8px;
+}
+
+.faq-answer-list {
+    margin: 0 25px 16px 25px;
+    padding-left: 1.25em;
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+.faq-answer-list li {
+    margin-bottom: 6px;
+}
+
+.faq-answer p:last-child {
+    padding-bottom: 20px;
 }
 
 /* WhatsApp Section */

@@ -68,51 +68,57 @@ require CLIENTINC_DIR . 'lpb-chrome-header.inc.php';
                         </svg>
                     </div>
                     <div class="faq-answer">
-                        <p data-i18n="faqA1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p data-i18n="faqA1">Untuk memulai laporan, pengguna dapat mengakses halaman Helpdesk OIKN kemudian memilih menu Buat Laporan. Selanjutnya, pengguna diminta untuk mengisi informasi yang diperlukan, seperti kategori laporan, deskripsi permasalahan, serta data kontak. Setelah semua data diisi dengan lengkap, laporan dapat dikirim untuk diproses oleh tim terkait.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span data-i18n="faqQ2">Bagaimana cara membuat akun?</span>
+                        <span data-i18n="faqQ2">Apa arti nomor tiket?</span>
                         <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 7.5 L10 12.5 L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     <div class="faq-answer">
-                        <p data-i18n="faqA2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p data-i18n="faqA2">Nomor tiket adalah kode unik yang diberikan untuk setiap laporan yang masuk ke sistem. Nomor ini digunakan sebagai identitas laporan Anda dan berfungsi untuk mempermudah proses pelacakan, pemantauan status, serta komunikasi antara pelapor dan tim penanganan.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span data-i18n="faqQ3">Saya lupa kata sandi akun saya, bagaimana cara melakukan reset kata sandi?</span>
+                        <span data-i18n="faqQ3">Bagaimana cara mendapatkan nomor tiket saya?</span>
                         <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 7.5 L10 12.5 L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     <div class="faq-answer">
-                        <p data-i18n="faqA3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p data-i18n="faqA3">Nomor tiket akan otomatis diberikan setelah Anda berhasil mengirimkan laporan. Nomor tersebut akan ditampilkan pada layar konfirmasi dan juga dikirimkan ke email yang Anda daftarkan.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span data-i18n="faqQ4">Apa arti nomor tiket?</span>
+                        <span data-i18n="faqQ4">Bagaimana cara mengecek status laporan?</span>
                         <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 7.5 L10 12.5 L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     <div class="faq-answer">
-                        <p data-i18n="faqA4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p data-i18n="faqA4">Anda dapat mengecek status laporan dengan mengakses menu Cek Status Laporan pada website Helpdesk. Masukkan nomor tiket yang Anda miliki, kemudian sistem akan menampilkan informasi terbaru terkait perkembangan laporan Anda.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span data-i18n="faqQ5">Bagaimana cara mendapatkan nomor tiket saya?</span>
+                        <span data-i18n="faqQ5">Mengapa harus memasukkan email dan nomor HP pelapor?</span>
                         <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 7.5 L10 12.5 L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     <div class="faq-answer">
-                        <p data-i18n="faqA5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="faq-answer-lead" data-i18n="faqA5Lead">Email dan nomor handphone diperlukan untuk:</p>
+                        <ul class="faq-answer-list">
+                            <li data-i18n="faqA5Li1">Mengirimkan nomor tiket dan konfirmasi laporan</li>
+                            <li data-i18n="faqA5Li2">Memberikan pembaruan status laporan secara berkala</li>
+                            <li data-i18n="faqA5Li3">Memudahkan tim dalam menghubungi pelapor apabila diperlukan klarifikasi tambahan</li>
+                        </ul>
+                        <p data-i18n="faqA5Close">Data yang Anda berikan akan digunakan hanya untuk keperluan layanan dan dijaga kerahasiaannya sesuai dengan ketentuan yang berlaku.</p>
                     </div>
                 </div>
             </div>
@@ -156,15 +162,19 @@ require CLIENTINC_DIR . 'lpb-chrome-header.inc.php';
                 navLogin: "Masuk",
                 faqTitle: "Soal Sering Ditanya (SSD)",
                 faqQ1: "Bagaimana cara memulai laporan?",
-                faqA1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                faqQ2: "Bagaimana cara membuat akun?",
-                faqA2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                faqQ3: "Saya lupa kata sandi akun saya, bagaimana cara melakukan reset kata sandi?",
-                faqA3: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                faqQ4: "Apa arti nomor tiket?",
-                faqA4: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                faqQ5: "Bagaimana cara mendapatkan nomor tiket saya?",
-                faqA5: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                faqA1: "Untuk memulai laporan, pengguna dapat mengakses halaman Helpdesk OIKN kemudian memilih menu Buat Laporan. Selanjutnya, pengguna diminta untuk mengisi informasi yang diperlukan, seperti kategori laporan, deskripsi permasalahan, serta data kontak. Setelah semua data diisi dengan lengkap, laporan dapat dikirim untuk diproses oleh tim terkait.",
+                faqQ2: "Apa arti nomor tiket?",
+                faqA2: "Nomor tiket adalah kode unik yang diberikan untuk setiap laporan yang masuk ke sistem. Nomor ini digunakan sebagai identitas laporan Anda dan berfungsi untuk mempermudah proses pelacakan, pemantauan status, serta komunikasi antara pelapor dan tim penanganan.",
+                faqQ3: "Bagaimana cara mendapatkan nomor tiket saya?",
+                faqA3: "Nomor tiket akan otomatis diberikan setelah Anda berhasil mengirimkan laporan. Nomor tersebut akan ditampilkan pada layar konfirmasi dan juga dikirimkan ke email yang Anda daftarkan.",
+                faqQ4: "Bagaimana cara mengecek status laporan?",
+                faqA4: "Anda dapat mengecek status laporan dengan mengakses menu Cek Status Laporan pada website Helpdesk. Masukkan nomor tiket yang Anda miliki, kemudian sistem akan menampilkan informasi terbaru terkait perkembangan laporan Anda.",
+                faqQ5: "Mengapa harus memasukkan email dan nomor HP pelapor?",
+                faqA5Lead: "Email dan nomor handphone diperlukan untuk:",
+                faqA5Li1: "Mengirimkan nomor tiket dan konfirmasi laporan",
+                faqA5Li2: "Memberikan pembaruan status laporan secara berkala",
+                faqA5Li3: "Memudahkan tim dalam menghubungi pelapor apabila diperlukan klarifikasi tambahan",
+                faqA5Close: "Data yang Anda berikan akan digunakan hanya untuk keperluan layanan dan dijaga kerahasiaannya sesuai dengan ketentuan yang berlaku.",
                 waTitle: "Anda juga bisa melaporkan lewat WhatsApp",
                 waDesc: "Anda dapat melaporkan keluhan atau pengaduan melalui WhatsApp ke Otorita Ibu Kota Nusantara. Laporan yang masuk akan diteruskan kepada Kepala OIKN untuk ditindaklanjuti.",
                 waButton: "Mulai Lapor di WhatsApp",
@@ -184,16 +194,20 @@ require CLIENTINC_DIR . 'lpb-chrome-header.inc.php';
                 navCheckStatus: "Check Report Status",
                 navLogin: "Login",
                 faqTitle: "Frequently Asked Questions (FAQ)",
-                faqQ1: "How to start a report?",
-                faqA1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                faqQ2: "How to create an account?",
-                faqA2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                faqQ3: "I forgot my account password, how do I reset it?",
-                faqA3: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                faqQ4: "What does a ticket number mean?",
-                faqA4: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                faqQ5: "How do I get my ticket number?",
-                faqA5: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                faqQ1: "How do I submit a report?",
+                faqA1: "To submit a report, users can access the OIKN Helpdesk page and select the Create Ticket menu. Users will then be asked to fill in the required information, such as the report category, issue description, and contact details. Once all information is completed, the report can be submitted for processing by the relevant team.",
+                faqQ2: "What does the ticket number mean?",
+                faqA2: "The ticket number is a unique code assigned to each report submitted to the system. It serves as the identity of your report and is used to track progress, monitor status, and facilitate communication between you and the support team.",
+                faqQ3: "How do I get my ticket number?",
+                faqA3: "Your ticket number will be automatically generated after you successfully submit a report. It will be displayed on the confirmation screen and also sent to your registered email.",
+                faqQ4: "How can I check my report status?",
+                faqA4: "You can check your report status by accessing the Check Report Status menu on the Helpdesk website. Enter your ticket number, and the system will display the latest updates on your report.",
+                faqQ5: "Why do I need to provide my email and phone number?",
+                faqA5Lead: "Your email and phone number are required to:",
+                faqA5Li1: "Send your ticket number and confirmation",
+                faqA5Li2: "Provide regular updates on your report status",
+                faqA5Li3: "Allow the support team to contact you if additional information is needed",
+                faqA5Close: "Your data will only be used for service purposes and will be kept confidential in accordance with applicable regulations.",
                 waTitle: "You can also report via WhatsApp",
                 waDesc: "You can report complaints or issues through WhatsApp to the Nusantara Capital Authority. Reports received will be forwarded to the Head of OIKN for follow-up.",
                 waButton: "Start Reporting on WhatsApp",
