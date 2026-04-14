@@ -11,9 +11,9 @@ if (!isset($lpb_auth_page)) {
 if (isset($lpb_auth_hero) && is_string($lpb_auth_hero) && $lpb_auth_hero !== '') {
     $lpb_auth_hero_file = $lpb_auth_hero;
 } elseif ($lpb_auth_page === 'access') {
-    $lpb_auth_hero_file = 'foto3.JPG';
+    $lpb_auth_hero_file = 'foto3.webp';
 } else {
-    $lpb_auth_hero_file = 'foto1.jpg';
+    $lpb_auth_hero_file = 'foto1.webp';
 }
 ?>
     <div class="signin-container">
