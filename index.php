@@ -27,6 +27,8 @@ $lpb_whatsapp_url = $lpb_whatsapp_number !== ''
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo Format::htmlchars($page_title); ?></title>
+    <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="<?php echo Format::htmlchars($lpb_asset); ?>style.css">
 </head>
 <body>
