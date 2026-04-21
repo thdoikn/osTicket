@@ -27,7 +27,6 @@ if (!isset($client_logged_in)) {
                         <img src="<?php echo Format::htmlchars($lpb_asset); ?>asset/logo.png" alt="" class="logo-img">
                     </a>
                 </div>
-                <span class="logo-text">Nusantara</span>
             </div>
             <div class="signin-header-center">
                 <nav class="header-nav">
