@@ -42,6 +42,8 @@ if (!isset($client_logged_in)) {
                 <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php" class="nav-link"><?php
                     echo sprintf(__('Tickets (%d)'), $thisclient->getNumTickets()); ?></a>
                 <a href="<?php echo Format::htmlchars($signout_url); ?>" class="nav-link login-link"><?php echo __('Sign Out'); ?></a>
+<?php } else { ?>
+                <a href="<?php echo Format::htmlchars($signin_url); ?>" class="nav-link login-link" data-i18n="navLogin">Masuk</a>
 <?php } ?>
                 <div class="language-selector" id="languageSelector">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
