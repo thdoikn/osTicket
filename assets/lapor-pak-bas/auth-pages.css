@@ -326,6 +326,14 @@ body.signin-page .signin-right {
     vertical-align: top;
     box-sizing: border-box;
     padding: 10px 0 !important;
+    /* theme.css table.padded tr > td sets height:20px — breaks register layout */
+    height: auto !important;
+    min-height: 0;
+}
+
+.lpb-register-wrap table.padded tr > td,
+.lpb-register-wrap table.padded tr > th {
+    height: auto !important;
 }
 
 .lpb-register-wrap > form > table.padded > tbody > tr > td[colspan="2"] {
@@ -341,12 +349,28 @@ body.signin-page .signin-right {
 }
 
 @media (max-width: 640px) {
+    .lpb-register-wrap > form > table.padded {
+        display: block;
+        width: 100%;
+    }
+
+    .lpb-register-wrap > form > table.padded > tbody {
+        display: block;
+        width: 100%;
+    }
+
+    .lpb-register-wrap > form > table.padded > tbody > tr {
+        display: block;
+        width: 100%;
+    }
+
     .lpb-register-wrap > form > table.padded > tbody > tr > td,
     .lpb-register-wrap > form > table.padded > tbody > tr > td:first-child:not([colspan]) {
         display: block;
         width: 100% !important;
         max-width: none;
         padding-right: 0 !important;
+        height: auto !important;
     }
 }
 
