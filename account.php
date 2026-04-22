@@ -138,6 +138,7 @@ $lpb_use_auth_shell = in_array($inc, array(
     'register.confirm.inc.php',
     'register.confirmed.inc.php',
 ), true);
+$lpb_use_profile_form_shell = ($inc === 'profile.inc.php');
 if ($lpb_use_auth_shell) {
     if ($inc === 'register.confirm.inc.php') {
         $lpb_auth_page = 'register_confirm';
@@ -155,6 +156,21 @@ if ($lpb_use_auth_shell) {
     include CLIENTINC_DIR . $inc;
     include CLIENTINC_DIR . 'lpb-auth-layout-end.inc.php';
     include CLIENTINC_DIR . 'lpb-auth-foot.inc.php';
+} elseif ($lpb_use_profile_form_shell) {
+    $lpb_asset = ROOT_PATH . 'assets/lapor-pak-bas/';
+    $signin_url = ROOT_PATH . 'login.php'
+        . ($thisclient ? '?e=' . urlencode($thisclient->getEmail()) : '');
+    $signout_url = ROOT_PATH . 'logout.php?auth=' . $ost->getLinkToken();
+    $client_logged_in = $thisclient && $thisclient->isValid() && !$thisclient->isGuest();
+    $lpb_active = 'profile';
+    $title = ($cfg && $cfg->getTitle())
+        ? $cfg->getTitle() . ' — ' . __('Manage Your Profile Information')
+        : __('Manage Your Profile Information');
+    require CLIENTINC_DIR . 'lpb-form-head.inc.php';
+    require CLIENTINC_DIR . 'lpb-chrome-header.inc.php';
+    require CLIENTINC_DIR . 'lpb-profile-page.inc.php';
+    require CLIENTINC_DIR . 'lpb-chrome-footer.inc.php';
+    require CLIENTINC_DIR . 'lpb-form-foot.inc.php';
 } else {
     include CLIENTINC_DIR . 'header.inc.php';
     include CLIENTINC_DIR . $inc;

@@ -64,7 +64,19 @@ if (($lang = Internationalization::getCurrentLanguage()) && $lang != 'en_US') { 
             ticketEditingTitle: 'Mengedit Tiket',
             ticketBtnUpdate: 'Perbarui',
             threadPostedVerb: 'mengirim',
-            threadEditedBadge: 'Disunting'
+            threadEditedBadge: 'Disunting',
+            breadcrumbProfile: 'Profil',
+            profilePageTitle: 'Kelola Informasi Profil Anda',
+            profilePageDesc: 'Gunakan formulir di bawah untuk memperbarui informasi akun yang kami simpan.',
+            profileBtnUpdate: 'Perbarui',
+            sectionPreferences: 'Preferensi',
+            sectionCredentials: 'Kredensial akses',
+            labelTimezone: 'Zona waktu:',
+            labelPreferredLanguage: 'Bahasa pilihan:',
+            profileUseBrowserPreference: '— Gunakan preferensi peramban —',
+            profileLabelCurrentPassword: 'Kata sandi saat ini:',
+            profileLabelNewPassword: 'Kata sandi baru:',
+            profileLabelConfirmNewPassword: 'Konfirmasi kata sandi baru:'
         },
         en: {
             navHome: 'Home',
@@ -107,7 +119,19 @@ if (($lang = Internationalization::getCurrentLanguage()) && $lang != 'en_US') { 
             ticketEditingTitle: 'Editing Ticket',
             ticketBtnUpdate: 'Update',
             threadPostedVerb: 'posted',
-            threadEditedBadge: 'Edited'
+            threadEditedBadge: 'Edited',
+            breadcrumbProfile: 'Profile',
+            profilePageTitle: 'Manage Your Profile Information',
+            profilePageDesc: 'Use the forms below to update the information we have on file for your account.',
+            profileBtnUpdate: 'Update',
+            sectionPreferences: 'Preferences',
+            sectionCredentials: 'Access Credentials',
+            labelTimezone: 'Time Zone:',
+            labelPreferredLanguage: 'Preferred Language:',
+            profileUseBrowserPreference: '— Use Browser Preference —',
+            profileLabelCurrentPassword: 'Current Password:',
+            profileLabelNewPassword: 'New Password:',
+            profileLabelConfirmNewPassword: 'Confirm New Password:'
         }
     };
 

@@ -282,3 +282,155 @@
 .create-ticket-page .filedrop {
     border-radius: 8px;
 }
+
+/* Profile (lpb-form-head): register-style table layout; auth-pages.css is not loaded here */
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+/* Preferensi / kredensial: tabel sendiri + colgroup agar lebar kolom benar (tabel user di atas isinya colspan=2) */
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.lpb-profile-settings-table {
+    table-layout: fixed;
+    width: 100%;
+    max-width: min(44rem, 100%);
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.lpb-profile-settings-table col.lpb-profile-col-label {
+    width: 12rem;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.lpb-profile-settings-table col.lpb-profile-col-value {
+    width: auto;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.lpb-profile-settings-table > tbody > tr > td:first-child:not([colspan]) {
+    white-space: nowrap;
+    vertical-align: middle;
+    padding-right: 16px !important;
+    font-weight: bold;
+    color: #000;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded > tbody > tr {
+    display: table-row;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded > tbody > tr > td {
+    display: table-cell;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 10px 0 !important;
+    height: auto !important;
+    min-height: 0;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap table.padded tr > td,
+.create-ticket-page .create-ticket-main .lpb-register-wrap table.padded tr > th {
+    height: auto !important;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded > tbody > tr > td[colspan="2"] {
+    width: 100%;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded > tbody > tr > td:first-child:not([colspan]) {
+    width: 1%;
+    max-width: none;
+    white-space: nowrap;
+    padding-right: 16px !important;
+    font-weight: bold;
+    color: #000;
+}
+
+@media (max-width: 640px) {
+    .create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded {
+        display: block;
+        width: 100%;
+    }
+
+    .create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded > tbody {
+        display: block;
+        width: 100%;
+    }
+
+    .create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded > tbody > tr {
+        display: block;
+        width: 100%;
+    }
+
+    .create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded > tbody > tr > td,
+    .create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded > tbody > tr > td:first-child:not([colspan]) {
+        display: block;
+        width: 100% !important;
+        max-width: none;
+        padding-right: 0 !important;
+        height: auto !important;
+    }
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded input[type="text"],
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded input[type="email"],
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded input[type="password"],
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded input[type="tel"],
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded select,
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded textarea {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 12px 14px;
+    border: 1px solid #e0e0e0;
+    font-size: 15px;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded input:focus,
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded select:focus,
+.create-ticket-page .create-ticket-main .lpb-register-wrap > form > table.padded textarea:focus {
+    border-color: #C79F62;
+    outline: none;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap .select2-container {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0 !important;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap h3 {
+    margin: 16px 0 8px;
+    font-size: 17px;
+    color: #333;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap .lpb-register-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap .lpb-register-actions input[type="submit"],
+.create-ticket-page .create-ticket-main .lpb-register-wrap .lpb-register-actions input[type="reset"],
+.create-ticket-page .create-ticket-main .lpb-register-wrap .lpb-register-actions input[type="button"] {
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 4px;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap .lpb-register-actions input[type="submit"] {
+    background: linear-gradient(180deg, #D4A574 0%, #C79F62 100%);
+    color: #fff !important;
+    border: none;
+}
+
+.create-ticket-page .create-ticket-main .lpb-register-wrap .lpb-register-actions input[type="reset"],
+.create-ticket-page .create-ticket-main .lpb-register-wrap .lpb-register-actions input[type="button"] {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    color: #333;
+}

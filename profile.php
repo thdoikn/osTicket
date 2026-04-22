@@ -22,23 +22,36 @@ require_once 'class.user.php';
 
 // Check if User is Guest. If so, redirect them back to ticket page to
 // prevent Account Takeover.
-if ($thisclient->isGuest())
+if ($thisclient->isGuest()) {
     Http::redirect('tickets.php');
+}
 
+$errors = array();
 $user = User::lookup($thisclient->getId());
 
 if ($user && $_POST) {
-    $errors = array();
     if ($acct = $thisclient->getAccount()) {
-       $acct->update($_POST, $errors);
+        $acct->update($_POST, $errors);
     }
-    if (!$errors && $user->updateInfo($_POST, $errors))
+    if (!$errors && $user->updateInfo($_POST, $errors)) {
         Http::redirect('tickets.php');
+    }
 }
 
-$inc = 'profile.inc.php';
+$lpb_asset = ROOT_PATH . 'assets/lapor-pak-bas/';
+$signin_url = ROOT_PATH . 'login.php'
+    . ($thisclient ? '?e=' . urlencode($thisclient->getEmail()) : '');
+$signout_url = ROOT_PATH . 'logout.php?auth=' . $ost->getLinkToken();
+$client_logged_in = $thisclient && $thisclient->isValid() && !$thisclient->isGuest();
+$lpb_active = 'profile';
+$title = ($cfg && $cfg->getTitle())
+    ? $cfg->getTitle() . ' — ' . __('Manage Your Profile Information')
+    : __('Manage Your Profile Information');
 
-include(CLIENTINC_DIR.'header.inc.php');
-include(CLIENTINC_DIR.$inc);
-include(CLIENTINC_DIR.'footer.inc.php');
+require CLIENTINC_DIR . 'lpb-form-head.inc.php';
+require CLIENTINC_DIR . 'lpb-chrome-header.inc.php';
 
+require CLIENTINC_DIR . 'lpb-profile-page.inc.php';
+
+require CLIENTINC_DIR . 'lpb-chrome-footer.inc.php';
+require CLIENTINC_DIR . 'lpb-form-foot.inc.php';
