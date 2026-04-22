@@ -64,6 +64,35 @@ body.signin-page .signin-right {
     -webkit-overflow-scrolling: touch;
 }
 
+/* Hide hero whenever shell stacks (<=1024); beats flex-basis from style.css column layout */
+@media (max-width: 1024px) {
+    body.signin-page .signin-left {
+        display: none !important;
+        flex: 0 0 0 !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    body.signin-page .signin-background-img,
+    body.signin-page .signin-image-overlay {
+        display: none !important;
+    }
+
+    body.signin-page .signin-right {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 0;
+    }
+}
+
 @media (max-width: 768px) {
     body.signin-page {
         padding-top: 60px;

@@ -948,14 +948,6 @@ body {
         margin-top: 60px;
     }
 
-    .signin-left {
-        flex: 0 0 30%;
-    }
-
-    .signin-right {
-        flex: 0 0 70%;
-    }
-
     .signin-content {
         padding: 30px 25px;
     }
