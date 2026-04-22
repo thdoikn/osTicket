@@ -482,3 +482,8 @@ body.signin-page .signin-right {
     line-height: 1.65;
     font-weight: bold;
 }
+
+.lpb-register-confirm-body .lpb-register-confirm-cms-title {
+    font-size: 28px;
+    margin-top: 0;
+}

@@ -133,10 +133,22 @@ elseif ($_POST) {
         $user->delete();
 }
 
-$lpb_use_auth_shell = in_array($inc, array('register.inc.php', 'register.confirm.inc.php'), true);
+$lpb_use_auth_shell = in_array($inc, array(
+    'register.inc.php',
+    'register.confirm.inc.php',
+    'register.confirmed.inc.php',
+), true);
 if ($lpb_use_auth_shell) {
-    $lpb_auth_page = ($inc === 'register.confirm.inc.php') ? 'register_confirm' : 'register';
-    $title = __('Account Registration');
+    if ($inc === 'register.confirm.inc.php') {
+        $lpb_auth_page = 'register_confirm';
+    } elseif ($inc === 'register.confirmed.inc.php') {
+        $lpb_auth_page = 'register_confirmed';
+    } else {
+        $lpb_auth_page = 'register';
+    }
+    $title = ($inc === 'register.confirmed.inc.php')
+        ? __('Account Confirmed')
+        : __('Account Registration');
     include CLIENTINC_DIR . 'lpb-auth-head.inc.php';
     include CLIENTINC_DIR . 'lpb-auth-chrome-header.inc.php';
     include CLIENTINC_DIR . 'lpb-auth-layout-start.inc.php';

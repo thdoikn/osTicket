@@ -12,6 +12,8 @@ if (isset($lpb_auth_hero) && is_string($lpb_auth_hero) && $lpb_auth_hero !== '')
     $lpb_auth_hero_file = $lpb_auth_hero;
 } elseif ($lpb_auth_page === 'access') {
     $lpb_auth_hero_file = 'foto3.webp';
+} elseif (in_array($lpb_auth_page, array('register', 'register_confirm', 'register_confirmed'), true)) {
+    $lpb_auth_hero_file = 'foto1.webp';
 } else {
     $lpb_auth_hero_file = 'foto1.webp';
 }
