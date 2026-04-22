@@ -382,6 +382,12 @@ body.signin-page .signin-right {
     line-height: 1.4;
 }
 
+.lpb-register-wrap .password-input-wrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
 .lpb-register-wrap > form > table.padded input[type="text"],
 .lpb-register-wrap > form > table.padded input[type="email"],
 .lpb-register-wrap > form > table.padded input[type="password"],
@@ -395,6 +401,11 @@ body.signin-page .signin-right {
     padding: 12px 14px;
     border: 1px solid #e0e0e0;
     font-size: 15px;
+}
+
+.lpb-register-wrap > form > table.padded .password-input-wrapper input[type="password"],
+.lpb-register-wrap > form > table.padded .password-input-wrapper input[type="text"] {
+    padding: 12px 48px 12px 14px;
 }
 
 .lpb-register-wrap > form > table.padded input[type="text"][size="5"],
