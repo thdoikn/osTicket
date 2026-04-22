@@ -8,9 +8,11 @@ if (!isset($errors) || !is_array($errors)) {
   <?php csrf_token(); ?>
 <table width="100%" class="padded">
 <?php
+$GLOBALS['lpb_client_dynamic_form_i18n'] = true;
 foreach ($user->getForms() as $f) {
     $f->render(['staff' => false]);
 }
+unset($GLOBALS['lpb_client_dynamic_form_i18n']);
 ?>
 </table>
 <?php

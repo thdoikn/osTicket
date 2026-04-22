@@ -4599,7 +4599,12 @@ class PhoneNumberWidget extends Widget {
         echo Format::htmlchars($phone); ?>"/><?php
         // Allow display of extension field even if disabled if the phone
         // number being edited has an extension
-        if ($ext || $config['ext']) { ?> <?php echo __('Ext'); ?>:
+        if ($ext || $config['ext']) { ?> <?php
+        if (!empty($GLOBALS['lpb_client_dynamic_form_i18n'])) { ?>
+            <span data-i18n="fieldPhoneExt">Ekst</span>:
+        <?php } else { ?>
+            <?php echo __('Ext'); ?>:
+        <?php } ?>
             <input type="text" name="<?php
             echo $this->name; ?>-ext" value="<?php echo Format::htmlchars($ext);
                 ?>" size="5"/>

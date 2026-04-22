@@ -1,5 +1,11 @@
 /* osTicket open.php form inside Lapor Pak Bas chrome */
 
+/* Profile LPB: align form block with title/breadcrumb (same horizontal inset as style.css) */
+.create-ticket-page .content-wrapper.lpb-profile-form-wrap {
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
 .create-ticket-page .create-ticket-title-section .create-ticket-title span {
     color: #C79F62;
 }

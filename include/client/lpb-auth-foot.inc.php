@@ -97,7 +97,8 @@ if (($lang = Internationalization::getCurrentLanguage()) && $lang != 'en_US') { 
             labelConfirmPassword: 'Konfirmasi kata sandi:',
             registerBtn: 'Daftar',
             cancelBtn: 'Batal',
-            timezoneAutoDetect: 'Deteksi otomatis'
+            timezoneAutoDetect: 'Deteksi otomatis',
+            fieldPhoneExt: 'Ekst'
         },
         en: {
             navHome: 'Home',
@@ -173,7 +174,8 @@ if (($lang = Internationalization::getCurrentLanguage()) && $lang != 'en_US') { 
             labelConfirmPassword: 'Confirm New Password:',
             registerBtn: 'Register',
             cancelBtn: 'Cancel',
-            timezoneAutoDetect: 'Auto Detect'
+            timezoneAutoDetect: 'Auto Detect',
+            fieldPhoneExt: 'Ext'
         }
     };
     var registerFields = {

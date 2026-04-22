@@ -34,7 +34,7 @@ if (!isset($errors) || !is_array($errors)) {
             <div class="lpb-open-error" role="alert"><?php echo Format::htmlchars($errors['err']); ?></div>
         </div>
 <?php } ?>
-        <div class="content-wrapper">
+        <div class="content-wrapper lpb-profile-form-wrap">
             <?php require CLIENTINC_DIR . 'profile.inc.php'; ?>
         </div>
     </div>

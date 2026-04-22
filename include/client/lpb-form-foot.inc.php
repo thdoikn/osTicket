@@ -79,7 +79,8 @@ if (($lang = Internationalization::getCurrentLanguage()) && $lang != 'en_US') { 
             profileUseBrowserPreference: '— Gunakan preferensi peramban —',
             profileLabelCurrentPassword: 'Kata sandi saat ini:',
             profileLabelNewPassword: 'Kata sandi baru:',
-            profileLabelConfirmNewPassword: 'Konfirmasi kata sandi baru:'
+            profileLabelConfirmNewPassword: 'Konfirmasi kata sandi baru:',
+            fieldPhoneExt: 'Ekst'
         },
         en: {
             navHome: 'Home',
@@ -137,7 +138,28 @@ if (($lang = Internationalization::getCurrentLanguage()) && $lang != 'en_US') { 
             profileUseBrowserPreference: '— Use Browser Preference —',
             profileLabelCurrentPassword: 'Current Password:',
             profileLabelNewPassword: 'New Password:',
-            profileLabelConfirmNewPassword: 'Confirm New Password:'
+            profileLabelConfirmNewPassword: 'Confirm New Password:',
+            fieldPhoneExt: 'Ext'
+        }
+    };
+    var registerFields = {
+        id: {
+            email: 'Alamat email',
+            name: 'Nama lengkap',
+            phone: 'Nomor telepon',
+            notes: 'Catatan',
+            subject: 'Subjek',
+            address: 'Alamat',
+            company: 'Perusahaan'
+        },
+        en: {
+            email: 'Email Address',
+            name: 'Full Name',
+            phone: 'Phone Number',
+            notes: 'Notes',
+            subject: 'Subject',
+            address: 'Address',
+            company: 'Company'
         }
     };
 
@@ -207,6 +229,20 @@ if (($lang = Internationalization::getCurrentLanguage()) && $lang != 'en_US') { 
             var key = element.getAttribute('data-i18n-placeholder');
             if (pack[key]) {
                 element.setAttribute('placeholder', pack[key]);
+            }
+        });
+        var rf = registerFields[lang] || registerFields.id;
+        document.querySelectorAll('[data-i18n-field]').forEach(function (element) {
+            var fn = element.getAttribute('data-i18n-field');
+            if (fn && rf[fn]) {
+                element.textContent = rf[fn];
+            }
+        });
+        document.querySelectorAll('.lpb-bilingual').forEach(function (element) {
+            var idt = element.getAttribute('data-id');
+            var ent = element.getAttribute('data-en');
+            if (idt !== null && ent !== null) {
+                element.textContent = lang === 'id' ? idt : ent;
             }
         });
         lpbLocalizeTicketThreadEvents(lang);
