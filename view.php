@@ -47,6 +47,7 @@ $nav->setActiveNav('status');
 
 $inc = 'accesslink.inc.php';
 $lpb_auth_page = 'access';
+$lpb_active = 'view';
 $title = isset($title) ? $title : __('Check Ticket Status');
 
 require CLIENTINC_DIR . 'lpb-auth-head.inc.php';

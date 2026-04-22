@@ -30,6 +30,7 @@ $lpb_whatsapp_url = $lpb_whatsapp_number !== ''
     <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="<?php echo Format::htmlchars($lpb_asset); ?>style.css">
+    <script defer src="<?php echo Format::htmlchars($lpb_asset); ?>lpb-chrome-nav.js"></script>
 </head>
 <body>
 <?php

@@ -51,6 +51,7 @@ if ($lang) {
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/rtl.css"/>
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/select2.min.css">
     <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/style.css" media="screen">
+    <script defer src="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/lpb-chrome-nav.js"></script>
     <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/auth-pages.css" media="screen">
     <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-16x16.png" sizes="16x16" />

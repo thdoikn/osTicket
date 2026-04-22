@@ -36,6 +36,10 @@ body {
     padding: 15px 40px;
 }
 
+.header.is-nav-open {
+    z-index: 1003;
+}
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -120,6 +124,19 @@ body {
 .language-selector span {
     font-size: 14px;
     font-weight: bold;
+}
+
+.lpb-nav-backdrop[hidden] {
+    display: none !important;
+}
+
+.lpb-nav-backdrop:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
 }
 
 .login-btn {
@@ -272,12 +289,124 @@ body {
         font-size: 18px;
     }
 
-    .header-center {
-        display: none;
+    .header-center,
+    .signin-header-center {
+        flex: 0 0 0;
+        width: 0;
+        min-width: 0;
+        padding: 0;
+        margin: 0;
+        overflow: visible;
     }
 
-    .header-right {
+    .lpb-nav-account--bar {
+        display: none !important;
+    }
+
+    .lpb-nav-account--drawer {
+        display: flex !important;
+        flex-direction: column;
+        align-items: stretch;
         gap: 10px;
+        margin-top: 20px;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .header .header-nav,
+    .signin-header .header-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        min-height: 100dvh;
+        max-width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        padding-top: calc(68px + env(safe-area-inset-top, 0px));
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: max(40px, env(safe-area-inset-bottom, 0px));
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: rgba(199, 159, 98, 0.98);
+        z-index: 1002;
+        overflow-y: auto;
+        transform: translateX(100%);
+        visibility: hidden;
+        pointer-events: none;
+        transition: transform 0.25s ease, visibility 0.25s ease;
+    }
+
+    .header.is-nav-open .header-nav,
+    .signin-header.is-nav-open .header-nav {
+        transform: translateX(0);
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .header .header-nav .lpb-nav-primary,
+    .signin-header .header-nav .lpb-nav-primary {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .header .header-nav .lpb-nav-primary .nav-link,
+    .signin-header .header-nav .lpb-nav-primary .nav-link {
+        padding: 14px 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .header .header-nav .lpb-nav-primary .nav-link.nav-link--active,
+    .signin-header .header-nav .lpb-nav-primary .nav-link.nav-link--active {
+        border-bottom: 2px solid rgba(255, 255, 255, 0.95);
+    }
+
+    .header .header-nav .lpb-nav-account .nav-link,
+    .signin-header .header-nav .lpb-nav-account .nav-link {
+        padding: 12px;
+    }
+
+    .header .header-nav .lpb-nav-account span.nav-link,
+    .signin-header .header-nav .lpb-nav-account span.nav-link {
+        padding: 12px 12px 4px;
+        border-bottom: none;
+    }
+
+    .header .header-nav .lpb-nav-account--drawer a.nav-link.login-link[data-i18n="navLogin"],
+    .signin-header .header-nav .lpb-nav-account--drawer a.nav-link.login-link[data-i18n="navLogin"] {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        background: #fff;
+        color: #111;
+        text-align: center;
+        border-radius: 8px;
+        padding: 14px 16px;
+        margin-top: 4px;
+    }
+
+    .header .header-nav .lpb-nav-account--drawer a.nav-link.login-link[data-i18n="navLogin"]:hover,
+    .signin-header .header-nav .lpb-nav-account--drawer a.nav-link.login-link[data-i18n="navLogin"]:hover {
+        opacity: 1;
+        background: #e8e8e8;
+        color: #111;
+    }
+
+    .header-right,
+    .signin-header-right {
+        gap: 10px;
+    }
+
+    .header.is-nav-open .header-left,
+    .header.is-nav-open .header-right,
+    .signin-header.is-nav-open .signin-header-left,
+    .signin-header.is-nav-open .signin-header-right {
+        position: relative;
+        z-index: 1010;
     }
 
     .language-selector span {
@@ -312,6 +441,87 @@ body {
     display: flex;
     align-items: center;
     gap: 30px;
+}
+
+.lpb-nav-primary {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.lpb-nav-account {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.lpb-nav-account--drawer {
+    display: none;
+}
+
+.lpb-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+@media (min-width: 769px) {
+    .lpb-nav-toggle {
+        display: none;
+    }
+}
+
+.lpb-nav-toggle-bars {
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 1px;
+    transition: background 0.2s ease;
+}
+
+.lpb-nav-toggle-bars::before,
+.lpb-nav-toggle-bars::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 1px;
+    transition: transform 0.2s ease;
+}
+
+.lpb-nav-toggle-bars::before {
+    top: -7px;
+}
+
+.lpb-nav-toggle-bars::after {
+    top: 7px;
+}
+
+.header.is-nav-open .lpb-nav-toggle-bars,
+.signin-header.is-nav-open .lpb-nav-toggle-bars {
+    background: transparent;
+}
+
+.header.is-nav-open .lpb-nav-toggle-bars::before,
+.signin-header.is-nav-open .lpb-nav-toggle-bars::before {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.header.is-nav-open .lpb-nav-toggle-bars::after,
+.signin-header.is-nav-open .lpb-nav-toggle-bars::after {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 .nav-link {
@@ -540,10 +750,6 @@ body {
 
 /* Responsive for new sections */
 @media (max-width: 768px) {
-    .header-nav {
-        display: none;
-    }
-
     .faq-section {
         padding: 60px 20px;
     }
@@ -579,6 +785,10 @@ body {
     z-index: 1000;
     background: #C79F62;
     padding: 15px 40px;
+}
+
+.signin-header.is-nav-open {
+    z-index: 1003;
 }
 
 .signin-header-container {
@@ -938,10 +1148,6 @@ body {
 @media (max-width: 768px) {
     .signin-header {
         padding: 12px 20px;
-    }
-
-    .signin-header-center {
-        display: none;
     }
 
     .signin-container {
