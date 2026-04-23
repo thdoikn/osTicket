@@ -133,6 +133,40 @@ class TicketApiController extends ApiController {
 
     }
 
+    function lookup($format) {
+
+        if (!($key = $this->requireApiKey()))
+            return $this->exerr(401, __('Valid API key required'));
+
+        $number = trim($_GET['number'] ?? '');
+        $email  = trim($_GET['email']  ?? '');
+
+        if (!$number || !$email)
+            return $this->exerr(400, __('number and email parameters are required'));
+
+        $ticket = Ticket::lookupByNumber($number, $email);
+
+        if (!$ticket)
+            return $this->exerr(404, __('Ticket not found'));
+
+        $status   = $ticket->getStatus();
+        $priority = $ticket->getPriority();
+
+        $data = array(
+            'number'     => $ticket->getNumber(),
+            'subject'    => $ticket->getSubject(),
+            'status'     => $status ? $status->getName() : '',
+            'state'      => $ticket->getState(),
+            'department' => $ticket->getDeptName(),
+            'priority'   => $priority ? $priority->getDesc() : '',
+            'created'    => $ticket->getCreateDate(),
+            'updated'    => $ticket->getUpdateDate(),
+            'due_date'   => $ticket->getDueDate(),
+        );
+
+        $this->response(200, json_encode($data));
+    }
+
     /* private helper functions */
 
     function createTicket($data, $source = 'API') {
