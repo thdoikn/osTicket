@@ -16,7 +16,7 @@ $signout_url = ROOT_PATH . 'logout.php?auth=' . $ost->getLinkToken();
 $client_logged_in = $thisclient && $thisclient->isValid() && !$thisclient->isGuest();
 
 /** International digits only, e.g. 6281112345678. Leave empty until official line is known. */
-$lpb_whatsapp_number = '';
+$lpb_whatsapp_number = '6281330287607';
 $lpb_whatsapp_url = $lpb_whatsapp_number !== ''
     ? 'https://wa.me/' . preg_replace('/\D+/', '', $lpb_whatsapp_number)
     : '';
