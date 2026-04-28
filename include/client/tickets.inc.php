@@ -118,14 +118,40 @@ $pageNav->setURL('tickets.php', $qs);
 $tickets->filter(array('ticket_id__in' => $visibility));
 $pageNav->paginate($tickets);
 
-$showing =$total ? $pageNav->showing() : "";
-if(!$results_type)
-{
-	$results_type=ucfirst($status).' '.__('Tickets');
+$lpb_caption_type_key = 'ticketsListCaptionOpenTickets';
+if ($status === 'closed') {
+    $lpb_caption_type_key = 'ticketsListCaptionClosedTickets';
+} elseif (!$status) {
+    $lpb_caption_type_key = 'ticketsListCaptionAllTickets';
 }
-$showing.=($status)?(' '.$results_type):' '.__('All Tickets');
-if($search)
-    $showing=__('Search Results').": $showing";
+
+$lpb_showing_range_html = '';
+if ($total) {
+    $pn = $pageNav;
+    $start = $pn->getStart() + 1;
+    $end = min($start + $pn->limit + $pn->slack - 1, $pn->total);
+    if (!$pn->isrealtotal) {
+        $lpb_showing_range_html = sprintf('%d - %d', $start, $end);
+    } elseif ($pn->total > 0) {
+        if ($pn->approx) {
+            $lpb_showing_range_html = sprintf(
+                '%d - %d <span data-i18n="ticketsListAbout">sekitar</span> %d',
+                $start,
+                $end,
+                (int) $pn->total
+            );
+        } else {
+            $lpb_showing_range_html = sprintf(
+                '%d - %d <span data-i18n="ticketsListOf">dari</span> %d',
+                $start,
+                $end,
+                (int) $pn->total
+            );
+        }
+    } else {
+        $lpb_showing_range_html = '0';
+    }
+}
 
 $negorder=$order=='-'?'ASC':'DESC'; //Negate the sorting
 
@@ -137,87 +163,116 @@ $tickets->values(
 );
 
 ?>
-<div class="search well">
-<div class="flush-left">
-<form action="tickets.php" method="get" id="ticketSearchForm">
+<div class="lpb-tickets-list">
+<div class="lpb-tickets-toolbar">
+<form action="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php" method="get" id="ticketSearchForm">
     <input type="hidden" name="a"  value="search">
-    <input type="text" name="keywords" size="30" value="<?php echo Format::htmlchars($settings['keywords']); ?>">
-    <input type="submit" value="<?php echo __('Search');?>">
-<div class="pull-right">
-    <?php echo __('Help Topic'); ?>:
-    <select name="topic_id" class="nowarn" onchange="javascript: this.form.submit(); ">
-        <option value="">&mdash; <?php echo __('All Help Topics');?> &mdash;</option>
+    <div class="lpb-tickets-search-row">
+        <input type="text" name="keywords" size="30" value="<?php echo Format::htmlchars($settings['keywords']); ?>">
+        <input type="submit" data-i18n-value="ticketsListSearch" value="Cari">
+    </div>
+    <div class="lpb-tickets-filter-row">
+        <span data-i18n="ticketsListHelpTopic">Topik bantuan</span>:
+        <select name="topic_id" class="nowarn" onchange="javascript: this.form.submit(); ">
+            <option value="" data-i18n="ticketsListAllHelpTopics">&mdash; Semua topik bantuan &mdash;</option>
 <?php
 foreach (Topic::getHelpTopics(true) as $id=>$name) {
         $count = $thisclient->getNumTopicTickets($id, $org_tickets);
         if ($count == 0)
             continue;
 ?>
-        <option value="<?php echo $id; ?>"i
+        <option value="<?php echo $id; ?>"
             <?php if ($settings['topic_id'] == $id) echo 'selected="selected"'; ?>
             ><?php echo sprintf('%s (%d)', Format::htmlchars($name),
                 $thisclient->getNumTopicTickets($id)); ?></option>
 <?php } ?>
-    </select>
-</div>
+        </select>
+    </div>
 </form>
 </div>
 
 <?php if ($settings['keywords'] || $settings['topic_id'] || $_REQUEST['sort']) { ?>
-<div style="margin-top:10px"><strong><a href="?clear" style="color:#777"><i class="icon-remove-circle"></i> <?php echo __('Clear all filters and sort'); ?></a></strong></div>
+<div class="lpb-tickets-clear-filters"><strong><a href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php?clear"><i class="icon-remove-circle"></i> <span data-i18n="ticketsListClearFilters">Hapus semua filter dan urutan</span></a></strong></div>
 <?php } ?>
 
-</div>
 
-
-<h1 style="margin:10px 0">
+<div class="lpb-tickets-heading-row">
+    <h1>
     <a href="<?php echo Http::refresh_url(); ?>"
         ><i class="refresh icon-refresh"></i>
-    <?php echo __('Tickets'); ?>
+        <span data-i18n="ticketsListHeading">Tiket</span>
     </a>
+    </h1>
 
-<div class="pull-right states">
-    <small>
+<div class="lpb-tickets-states">
 <?php if ($openTickets) { ?>
     <i class="icon-file-alt"></i>
     <a class="state <?php if ($status == 'open') echo 'active'; ?>"
         href="?<?php echo Http::build_query(array('a' => 'search', 'status' => 'open')); ?>">
-    <?php echo __('Open'); if ($openTickets > 0) echo sprintf(' (%d)', $openTickets); ?>
+    <span data-i18n="ticketsListOpen">Terbuka</span><?php if ($openTickets > 0) {
+        echo sprintf(' (%d)', $openTickets);
+    } ?>
     </a>
     <?php if ($closedTickets) { ?>
-    &nbsp;
-    <span style="color:lightgray">|</span>
+    <span class="lpb-tickets-state-sep">|</span>
     <?php }
 }
 if ($closedTickets) {?>
-    &nbsp;
     <i class="icon-file-text"></i>
     <a class="state <?php if ($status == 'closed') echo 'active'; ?>"
         href="?<?php echo Http::build_query(array('a' => 'search', 'status' => 'closed')); ?>">
-    <?php echo __('Closed'); if ($closedTickets > 0) echo sprintf(' (%d)', $closedTickets); ?>
+    <span data-i18n="ticketsListClosed">Tertutup</span><?php if ($closedTickets > 0) {
+        echo sprintf(' (%d)', $closedTickets);
+    } ?>
     </a>
 <?php } ?>
-    </small>
 </div>
-</h1>
-<table id="ticketTable" width="800" border="0" cellspacing="0" cellpadding="0">
-    <caption><?php echo $showing; ?></caption>
+</div>
+<table id="ticketTable" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <caption><?php
+    if (!empty($settings['keywords'])) {
+        ?><span data-i18n="ticketsListSearchResults">Hasil pencarian:</span> <?php
+    }
+    if ($total) {
+        ?><span data-i18n="ticketsListShowing">Menampilkan</span> <?php
+        echo $lpb_showing_range_html;
+        ?> <span data-i18n="<?php echo Format::htmlchars($lpb_caption_type_key); ?>"><?php
+        if ($lpb_caption_type_key === 'ticketsListCaptionClosedTickets') {
+            echo 'Tiket tertutup';
+        } elseif ($lpb_caption_type_key === 'ticketsListCaptionAllTickets') {
+            echo 'Semua tiket';
+        } else {
+            echo 'Tiket terbuka';
+        }
+        ?></span><?php
+    } else {
+        ?><span data-i18n="<?php echo Format::htmlchars($lpb_caption_type_key); ?>"><?php
+        if ($lpb_caption_type_key === 'ticketsListCaptionClosedTickets') {
+            echo 'Tiket tertutup';
+        } elseif ($lpb_caption_type_key === 'ticketsListCaptionAllTickets') {
+            echo 'Semua tiket';
+        } else {
+            echo 'Tiket terbuka';
+        }
+        ?></span><?php
+    }
+    ?></caption>
     <thead>
         <tr>
             <th nowrap>
-                <a href="tickets.php?sort=ID&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="<?php echo sprintf('%s %s', __('Sort By'), __('Ticket ID')); ?>"><?php echo __('Ticket #');?>&nbsp;<i class="icon-sort"></i></a>
+                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php?sort=ID&order=<?php echo $negorder; ?><?php echo $qstr; ?>" data-i18n-title="ticketsSortByTicketId" title="Urutkan nomor tiket"><span data-i18n="ticketsThTicketNum">Nomor tiket</span>&nbsp;<i class="icon-sort"></i></a>
             </th>
             <th width="120">
-                <a href="tickets.php?sort=date&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="<?php echo sprintf('%s %s', __('Sort By'), __('Date')); ?>"><?php echo __('Create Date');?>&nbsp;<i class="icon-sort"></i></a>
+                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php?sort=date&order=<?php echo $negorder; ?><?php echo $qstr; ?>" data-i18n-title="ticketsSortByDate" title="Urutkan tanggal"><span data-i18n="ticketsThCreateDate">Tanggal dibuat</span>&nbsp;<i class="icon-sort"></i></a>
             </th>
             <th width="100">
-                <a href="tickets.php?sort=status&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="<?php echo sprintf('%s %s', __('Sort By'), __('Status')); ?>"><?php echo __('Status');?>&nbsp;<i class="icon-sort"></i></a>
+                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php?sort=status&order=<?php echo $negorder; ?><?php echo $qstr; ?>" data-i18n-title="ticketsSortByStatus" title="Urutkan status"><span data-i18n="ticketsThStatus">Status</span>&nbsp;<i class="icon-sort"></i></a>
             </th>
             <th width="320">
-                <a href="tickets.php?sort=subject&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="<?php echo sprintf('%s %s', __('Sort By'), __('Subject')); ?>"><?php echo __('Subject');?>&nbsp;<i class="icon-sort"></i></a>
+                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php?sort=subject&order=<?php echo $negorder; ?><?php echo $qstr; ?>" data-i18n-title="ticketsSortBySubject" title="Urutkan subjek"><span data-i18n="ticketsThSubject">Subjek</span>&nbsp;<i class="icon-sort"></i></a>
             </th>
             <th width="120">
-                <a href="tickets.php?sort=dept&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="<?php echo sprintf('%s %s', __('Sort By'), __('Department')); ?>"><?php echo __('Department');?>&nbsp;<i class="icon-sort"></i></a>
+                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php?sort=dept&order=<?php echo $negorder; ?><?php echo $qstr; ?>" data-i18n-title="ticketsSortByDepartment" title="Urutkan departemen"><span data-i18n="ticketsThDepartment">Departemen</span>&nbsp;<i class="icon-sort"></i></a>
             </th>
         </tr>
     </thead>
@@ -233,7 +288,7 @@ if ($closedTickets) {?>
             $subject = $subject_field->display(
                 $subject_field->to_php($T['cdata__subject']) ?: $T['cdata__subject']
             );
-            $status = TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
+            $ticketStatusName = TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
             if (false) // XXX: Reimplement attachment count support
                 $subject.='  &nbsp;&nbsp;<span class="Icon file"></span>';
 
@@ -247,10 +302,10 @@ if ($closedTickets) {?>
             <tr id="<?php echo $T['ticket_id']; ?>">
                 <td>
                 <a class="Icon <?php echo strtolower($T['source']); ?>Ticket" title="<?php echo $T['user__default_email__address']; ?>"
-                    href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $ticketNumber; ?></a>
+                    href="<?php echo Format::htmlchars(ROOT_PATH); ?>tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $ticketNumber; ?></a>
                 </td>
                 <td><?php echo Format::date($T['created']); ?></td>
-                <td><?php echo $status; ?></td>
+                <td><?php echo $ticketStatusName; ?></td>
                 <td>
                   <?php if ($isCollab) {?>
                     <div style="max-height: 1.2em; max-width: 320px;" class="link truncate" href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><i class="icon-group"></i> <?php echo $subject; ?></div>
@@ -264,13 +319,15 @@ if ($closedTickets) {?>
         }
 
      } else {
-         echo '<tr><td colspan="5">'.__('Your query did not match any records').'</td></tr>';
+         echo '<tr><td colspan="5"><span data-i18n="ticketsListEmpty">Tidak ada data yang cocok dengan pencarian Anda.</span></td></tr>';
      }
     ?>
     </tbody>
 </table>
 <?php
 if ($total) {
-    echo '<div>&nbsp;'.__('Page').':'.$pageNav->getPageLinks().'&nbsp;</div>';
+    echo '<div class="lpb-tickets-pagination">&nbsp;<span data-i18n="ticketsListPageLabel">Halaman</span>:'
+        . $pageNav->getPageLinks() . '&nbsp;</div>';
 }
 ?>
+</div>

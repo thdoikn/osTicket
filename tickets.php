@@ -144,10 +144,42 @@ if($ticket && $ticket->checkUserAccess($thisclient)) {
     $inc='open.inc.php';
 }
 
+$lpb_use_ticket_list_shell = ($inc === 'tickets.inc.php');
+
 $lpb_use_ticket_shell = ($ticket && $ticket->checkUserAccess($thisclient)
     && in_array($inc, array('view.inc.php', 'edit.inc.php'), true));
 
-if ($lpb_use_ticket_shell) {
+if ($lpb_use_ticket_list_shell) {
+    $lpb_asset = ROOT_PATH . 'assets/lapor-pak-bas/';
+    $lpb_active = 'tickets';
+    $lpb_load_tickets_list_css = true;
+    $lpb_body_extra_class = 'lpb-tickets-list-page';
+    $signin_url = ROOT_PATH . 'login.php'
+        . ($thisclient ? '?e=' . urlencode($thisclient->getEmail()) : '');
+    $signout_url = ROOT_PATH . 'logout.php?auth=' . $ost->getLinkToken();
+    $client_logged_in = $thisclient && $thisclient->isValid() && !$thisclient->isGuest();
+    $title = ($cfg && $cfg->getTitle())
+        ? $cfg->getTitle() . ' — ' . __('Tickets')
+        : __('Tickets');
+
+    require CLIENTINC_DIR . 'lpb-form-head.inc.php';
+    require CLIENTINC_DIR . 'lpb-chrome-header.inc.php';
+
+    if ($ost->getError()) {
+        echo sprintf('<div class="lpb-alert lpb-alert-error">%s</div>', $ost->getError());
+    } elseif ($ost->getWarning()) {
+        echo sprintf('<div class="lpb-alert lpb-alert-warning">%s</div>', $ost->getWarning());
+    } elseif ($ost->getNotice()) {
+        echo sprintf('<div class="lpb-alert lpb-alert-notice">%s</div>', $ost->getNotice());
+    }
+
+    require CLIENTINC_DIR . 'lpb-tickets-list-page.inc.php';
+
+    print $tform->getMedia();
+
+    require CLIENTINC_DIR . 'lpb-chrome-footer.inc.php';
+    require CLIENTINC_DIR . 'lpb-form-foot.inc.php';
+} elseif ($lpb_use_ticket_shell) {
     $lpb_asset = ROOT_PATH . 'assets/lapor-pak-bas/';
     $lpb_active = 'tickets';
     $lpb_load_ticket_view_css = true;
@@ -195,4 +227,5 @@ if ($lpb_use_ticket_shell) {
     print $tform->getMedia();
     include CLIENTINC_DIR . 'footer.inc.php';
 }
+
 ?>

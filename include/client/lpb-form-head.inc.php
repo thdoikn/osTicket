@@ -58,6 +58,10 @@ if (!empty($lpb_load_ticket_view_css)) { ?>
     <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/ticket-view.css" media="screen">
 <?php
 }
+if (!empty($lpb_load_tickets_list_css)) { ?>
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/tickets-list.css" media="screen">
+<?php
+}
 ?>
     <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-16x16.png" sizes="16x16" />
