@@ -145,7 +145,7 @@ body.lpb-tickets-list-page .lpb-tickets-table-scroll {
     -webkit-overflow-scrolling: touch;
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    border: 1px solid #eee;
+    border: none;
     background: #fff;
     box-sizing: border-box;
 }
@@ -168,6 +168,7 @@ body.lpb-tickets-list-page #ticketTable caption {
     font-weight: bold;
     color: #444;
     background: #faf9f6;
+    border: none;
     border-bottom: 1px solid #eee;
 }
 
@@ -177,6 +178,7 @@ body.lpb-tickets-list-page #ticketTable thead th {
     font-weight: bold;
     padding: 12px 14px;
     text-align: left;
+    border: none;
     border-bottom: 2px solid #c79f62;
     font-size: 14px;
 }
@@ -192,6 +194,7 @@ body.lpb-tickets-list-page #ticketTable thead th a:hover {
 
 body.lpb-tickets-list-page #ticketTable tbody td {
     padding: 12px 14px;
+    border: none;
     border-bottom: 1px solid #eee;
     vertical-align: middle;
 }
