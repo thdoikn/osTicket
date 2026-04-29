@@ -228,6 +228,7 @@ if ($closedTickets) {?>
 <?php } ?>
 </div>
 </div>
+<div class="lpb-tickets-table-scroll" role="region" aria-label="Daftar tiket">
 <table id="ticketTable" width="100%" border="0" cellspacing="0" cellpadding="0">
     <caption><?php
     if (!empty($settings['keywords'])) {
@@ -324,6 +325,7 @@ if ($closedTickets) {?>
     ?>
     </tbody>
 </table>
+</div>
 <?php
 if ($total) {
     echo '<div class="lpb-tickets-pagination">&nbsp;<span data-i18n="ticketsListPageLabel">Halaman</span>:'

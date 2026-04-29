@@ -138,15 +138,27 @@ body.lpb-tickets-list-page .lpb-tickets-states .lpb-tickets-state-sep {
     color: #ccc;
 }
 
-body.lpb-tickets-list-page #ticketTable {
+body.lpb-tickets-list-page .lpb-tickets-table-scroll {
     width: 100%;
     max-width: 100%;
-    border-collapse: collapse;
-    background: #fff;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border-radius: 12px;
-    overflow: hidden;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     border: 1px solid #eee;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+body.lpb-tickets-list-page #ticketTable {
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+    border-collapse: collapse;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 body.lpb-tickets-list-page #ticketTable caption {
@@ -197,6 +209,31 @@ body.lpb-tickets-list-page .lpb-tickets-pagination {
     margin-top: 16px;
     font-weight: bold;
     color: #333;
+}
+
+@media (max-width: 768px) {
+    body.lpb-tickets-list-page.create-ticket-page .create-ticket-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    body.lpb-tickets-list-page.create-ticket-page .content-wrapper {
+        max-width: 100%;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    body.lpb-tickets-list-page.create-ticket-page .content-wrapper .breadcrumb-section,
+    body.lpb-tickets-list-page.create-ticket-page .content-wrapper .create-ticket-title-section {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    body.lpb-tickets-list-page.create-ticket-page .content-wrapper.lpb-profile-form-wrap {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 @media (max-width: 640px) {
