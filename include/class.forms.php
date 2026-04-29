@@ -317,12 +317,13 @@ class Form {
         if ($url[0] == '/')
             $url = ROOT_PATH . substr($url, 1);
 
+        $qs = Format::asset_cache_qs($url);
         switch (strtolower($type)) {
         case 'css': ?>
-        <link rel="stylesheet" type="text/css" href="<?php echo $url; ?>"/><?php
+        <link rel="stylesheet" type="text/css" href="<?php echo $url . $qs; ?>"/><?php
             break;
         case 'js': ?>
-        <script type="text/javascript" src="<?php echo $url; ?>"></script><?php
+        <script type="text/javascript" src="<?php echo $url . $qs; ?>"></script><?php
             break;
         }
     }
@@ -4910,7 +4911,7 @@ class TimezoneWidget extends ChoicesWidget {
         ?>
         <button type="button" class="action-button" onclick="javascript:
             $('head').append($('<script>').attr('src', '<?php
-            echo ROOT_PATH; ?>js/jstz.min.js'));
+            echo ROOT_PATH; ?>js/jstz.min.js<?php echo Format::asset_cache_qs(); ?>'));
             var recheck = setInterval(function() {
                 if (window.jstz !== undefined) {
                     clearInterval(recheck);

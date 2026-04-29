@@ -11,7 +11,7 @@ if (!defined('OSTCLIENTINC')) {
 <?php
 if (($lang = Internationalization::getCurrentLanguage()) && $lang != 'en_US') { ?>
     <script type="text/javascript" src="<?php echo ROOT_PATH; ?>ajax.php/i18n/<?php
-        echo $lang; ?>/js"></script>
+        echo $lang; ?>/js<?php echo Format::asset_cache_qs(); ?>"></script>
 <?php } ?>
 <script type="text/javascript">
     getConfig().resolve(<?php

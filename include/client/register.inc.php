@@ -150,7 +150,7 @@ $info = Format::htmlchars(($errors && $_POST)?$_POST:$info);
 
 <?php if (!isset($info['timezone'])) { ?>
 <!-- Auto detect client's timezone where possible -->
-<script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jstz.min.js"></script>
+<script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jstz.min.js<?php echo Format::asset_cache_qs(); ?>"></script>
 <script type="text/javascript">
 $(function() {
     var zone = jstz.determine();

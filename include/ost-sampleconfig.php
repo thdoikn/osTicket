@@ -176,4 +176,10 @@ define('SESSION_SESSID', 'OSTSESSID');
 #
 # define('SESSION_BACKEND', 'memcache');
 # define('MEMCACHE_SERVERS', 'server1:11211,server2:11211');
+# Central cache-buster for static CSS/JS (?v=…). Change this string when you deploy asset updates.
+
+if (!defined('OST_ASSET_CACHE_VER')) {
+    define('OST_ASSET_CACHE_VER', 'e8b4f21a9c6d7035b1e4f8a2c7d90361');
+}
+
 ?>

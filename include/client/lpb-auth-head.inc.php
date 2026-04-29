@@ -38,33 +38,33 @@ if ($lang) {
     <title><?php echo Format::htmlchars($title); ?></title>
     <meta name="description" content="customer support platform">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/osticket.css" media="screen">
-    <link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>css/theme.css" media="screen">
-    <link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>css/print.css" media="print">
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/typeahead.css" media="screen" />
-    <link type="text/css" href="<?php echo ROOT_PATH; ?>css/ui-lightness/jquery-ui-1.13.2.custom.min.css" rel="stylesheet" media="screen" />
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/jquery-ui-timepicker-addon.css" media="all">
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/thread.css" media="screen">
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/redactor.css" media="screen">
-    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/flags.css">
-    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/rtl.css"/>
-    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/select2.min.css">
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/style.css" media="screen">
-    <script defer src="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/lpb-chrome-nav.js"></script>
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/auth-pages.css" media="screen">
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/osticket.css<?php echo Format::asset_cache_qs(); ?>" media="screen">
+    <link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>css/theme.css<?php echo Format::asset_cache_qs(); ?>" media="screen">
+    <link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>css/print.css<?php echo Format::asset_cache_qs(); ?>" media="print">
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/typeahead.css<?php echo Format::asset_cache_qs(); ?>" media="screen" />
+    <link type="text/css" href="<?php echo ROOT_PATH; ?>css/ui-lightness/jquery-ui-1.13.2.custom.min.css<?php echo Format::asset_cache_qs(); ?>" rel="stylesheet" media="screen" />
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/jquery-ui-timepicker-addon.css<?php echo Format::asset_cache_qs(); ?>" media="all">
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/thread.css<?php echo Format::asset_cache_qs(); ?>" media="screen">
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/redactor.css<?php echo Format::asset_cache_qs(); ?>" media="screen">
+    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/font-awesome.min.css<?php echo Format::asset_cache_qs(); ?>">
+    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/flags.css<?php echo Format::asset_cache_qs(); ?>">
+    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/rtl.css<?php echo Format::asset_cache_qs(); ?>"/>
+    <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/select2.min.css<?php echo Format::asset_cache_qs(); ?>">
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/style.css<?php echo Format::asset_cache_qs(); ?>" media="screen">
+    <script defer src="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/lpb-chrome-nav.js<?php echo Format::asset_cache_qs(); ?>"></script>
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>assets/lapor-pak-bas/auth-pages.css<?php echo Format::asset_cache_qs(); ?>" media="screen">
     <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="<?php echo ROOT_PATH; ?>images/iknfavicon-16x16.png" sizes="16x16" />
-    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-3.7.0.min.js"></script>
-    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-ui-1.13.2.custom.min.js"></script>
-    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-ui-timepicker-addon.js"></script>
-    <script src="<?php echo ROOT_PATH; ?>js/osticket.js"></script>
-    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/filedrop.field.js"></script>
-    <script src="<?php echo ROOT_PATH; ?>js/bootstrap-typeahead.js"></script>
-    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/redactor.min.js"></script>
-    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/redactor-plugins.js"></script>
-    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/redactor-osticket.js"></script>
-    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/select2.min.js"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-3.7.0.min.js<?php echo Format::asset_cache_qs(); ?>"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-ui-1.13.2.custom.min.js<?php echo Format::asset_cache_qs(); ?>"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-ui-timepicker-addon.js<?php echo Format::asset_cache_qs(); ?>"></script>
+    <script src="<?php echo ROOT_PATH; ?>js/osticket.js<?php echo Format::asset_cache_qs(); ?>"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/filedrop.field.js<?php echo Format::asset_cache_qs(); ?>"></script>
+    <script src="<?php echo ROOT_PATH; ?>js/bootstrap-typeahead.js<?php echo Format::asset_cache_qs(); ?>"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/redactor.min.js<?php echo Format::asset_cache_qs(); ?>"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/redactor-plugins.js<?php echo Format::asset_cache_qs(); ?>"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/redactor-osticket.js<?php echo Format::asset_cache_qs(); ?>"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/select2.min.js<?php echo Format::asset_cache_qs(); ?>"></script>
     <?php
     if ($ost && ($headers = $ost->getExtraHeaders())) {
         echo "\n\t" . implode("\n\t", $headers) . "\n";

@@ -18,7 +18,7 @@ $TZ_TIMEZONE = @$TZ_TIMEZONE ?: '';
     </select>
     <button type="button" class="action-button" onclick="javascript:
 $('head').append($('<script>').attr('src', '<?php
-    echo ROOT_PATH; ?>js/jstz.min.js'));
+    echo ROOT_PATH; ?>js/jstz.min.js<?php echo Format::asset_cache_qs(); ?>'));
 var recheck = setInterval(function() {
     if (window.jstz !== undefined) {
         clearInterval(recheck);

@@ -19,6 +19,22 @@ require_once INCLUDE_DIR.'class.variable.php';
 
 class Format {
 
+    /**
+     * Query string for cache-busting static CSS/JS (OST_ASSET_CACHE_VER in ost-config.php).
+     *
+     * @param string $url If the URL already contains "?", "&v=" is used instead of "?v=".
+     */
+    static function asset_cache_qs($url = '') {
+        if (!defined('OST_ASSET_CACHE_VER') || (string) OST_ASSET_CACHE_VER === '') {
+            return '';
+        }
+        $enc = rawurlencode((string) OST_ASSET_CACHE_VER);
+        if ($url !== '' && strpos($url, '?') !== false) {
+            return '&v=' . $enc;
+        }
+
+        return '?v=' . $enc;
+    }
 
     static function file_size($bytes) {
 
