@@ -252,9 +252,13 @@ if ($blockReply = $ticket->isChild() && $ticket->getMergeType() != 'visual')
 <div class="clear" style="padding-bottom:10px;"></div>
 <?php if($errors['err']) { ?>
     <div id="msg_error"><?php echo $errors['err']; ?></div>
-<?php }elseif($msg) { ?>
+<?php } elseif ($msg) { ?>
+    <?php if (defined('LPB_TICKET_SHELL') && LPB_TICKET_SHELL) { ?>
+    <div id="msg_notice" class="lpb-alert lpb-alert-success" role="status"><span data-i18n="ticketMessagePostedSuccess">Pesan berhasil dikirim.</span></div>
+    <?php } else { ?>
     <div id="msg_notice"><?php echo $msg; ?></div>
-<?php }elseif($warn) { ?>
+    <?php } ?>
+<?php } elseif ($warn) { ?>
     <div id="msg_warning"><?php echo $warn; ?></div>
 <?php }
 if ((!$ticket->isClosed() || $ticket->isReopenable()) && !$blockReply) { ?>

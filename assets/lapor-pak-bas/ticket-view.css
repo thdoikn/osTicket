@@ -223,6 +223,11 @@ body.lpb-ticket-view-page #msg_warning {
     padding: 14px 18px;
     border-radius: 10px;
     font-weight: bold;
+    height: auto;
+    min-height: 0;
+    line-height: 1.45;
+    background-image: none;
+    box-sizing: border-box;
 }
 
 body.lpb-ticket-view-page #msg_error {
