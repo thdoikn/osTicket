@@ -144,6 +144,12 @@ if($ticket && $ticket->checkUserAccess($thisclient)) {
     $inc='open.inc.php';
 }
 
+// If client has no tickets, redirect to open ticket page (avoid rendering
+// the default osTicket open.inc.php via tickets.php).
+if ($inc === 'open.inc.php') {
+    Http::redirect('open.php');
+}
+
 $lpb_use_ticket_list_shell = ($inc === 'tickets.inc.php');
 
 $lpb_use_ticket_shell = ($ticket && $ticket->checkUserAccess($thisclient)
