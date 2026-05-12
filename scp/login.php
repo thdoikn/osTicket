@@ -29,6 +29,14 @@ $dest = $_SESSION['_staff']['auth']['dest'] ?? null;
 $msg = $_SESSION['_staff']['auth']['msg'] ?? null;
 $msg = $msg ?: ($content ? $content->getLocalName() : __('Authentication Required'));
 $dest=($dest && (!strstr($dest,'login.php') && !strstr($dest,'ajax.php')))?$dest:'index.php';
+
+// On a clean GET (no submit, no SSO callback), clear stale lockout counters and
+// staff auth state. A stale cookie can carry over failure data from a previous
+// session or installation, silently blocking login after a password reset.
+if (!$_POST && !isset($_GET['do'])) {
+    unset($_SESSION['_auth']['staff'], $_SESSION['_staff']);
+}
+
 $show_reset = false;
 if ($_POST) {
     $json = isset($_POST['ajax']) && $_POST['ajax'];

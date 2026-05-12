@@ -167,6 +167,85 @@ class TicketApiController extends ApiController {
         $this->response(200, json_encode($data));
     }
 
+    function listByEmail($format) {
+
+        if (!($key = $this->requireApiKey()))
+            return $this->exerr(401, __('Valid API key required'));
+
+        $email = trim($_GET['email'] ?? '');
+        if (!$email)
+            return $this->exerr(400, __('email parameter is required'));
+
+        $user = User::lookupByEmail($email);
+        if (!$user) {
+            $this->response(200, json_encode([]));
+            return;
+        }
+
+        $tickets = Ticket::objects()
+            ->filter(array('user_id' => $user->getId()))
+            ->order_by('-created');
+
+        $result = [];
+        foreach ($tickets as $ticket) {
+            $status   = $ticket->getStatus();
+            $priority = $ticket->getPriority();
+            $dueDate  = $ticket->getDueDate();
+            $result[] = array(
+                'number'     => $ticket->getNumber(),
+                'subject'    => $ticket->getSubject(),
+                'status'     => $status   ? strtolower($status->getName())   : '',
+                'state'      => strtolower($ticket->getState()),
+                'department' => $ticket->getDeptName(),
+                'priority'   => $priority ? $priority->getDesc() : '',
+                'created'    => $ticket->getCreateDate(),
+                'updated'    => $ticket->getUpdateDate(),
+                'due_date'   => $dueDate ?: null,
+            );
+        }
+
+        $this->response(200, json_encode($result));
+    }
+
+    function getThread($format) {
+
+        if (!($key = $this->requireApiKey()))
+            return $this->exerr(401, __('Valid API key required'));
+
+        $number = trim($_GET['number'] ?? '');
+        $email  = trim($_GET['email']  ?? '');
+
+        if (!$number || !$email)
+            return $this->exerr(400, __('number and email parameters are required'));
+
+        $ticket = Ticket::lookupByNumber($number);
+        if (!$ticket)
+            return $this->exerr(404, __('Ticket not found'));
+
+        if (!Ticket::lookupByNumber($number, $email))
+            return $this->exerr(403, __('Access denied'));
+
+        $thread = [];
+        $entries = $ticket->getThreadEntries(array('M', 'R'));
+        if ($entries) {
+            foreach ($entries as $entry) {
+                $type = $entry->getType();
+                $thread[] = array(
+                    'id'      => (int) $entry->getId(),
+                    'type'    => $type === 'M' ? 'user' : 'staff',
+                    'poster'  => $entry->getPoster(),
+                    'body'    => strip_tags($entry->getBody()->getClean()),
+                    'created' => $entry->getCreateDate(),
+                );
+            }
+        }
+
+        $this->response(200, json_encode(array(
+            'number' => $ticket->getNumber(),
+            'thread' => $thread,
+        )));
+    }
+
     /* private helper functions */
 
     function createTicket($data, $source = 'API') {
