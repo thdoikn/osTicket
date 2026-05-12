@@ -39,7 +39,7 @@ $lpb_nav_active = function ($key) use ($lpb_active) {
                     <div class="lpb-nav-primary">
                         <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>index.php" class="nav-link<?php echo $lpb_nav_active('home'); ?>" data-i18n="navHome">Beranda</a>
                         <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>open.php" class="nav-link<?php echo $lpb_nav_active('open'); ?>" data-i18n="navReport">Lapor</a>
-                        <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>view.php" class="nav-link<?php echo $lpb_nav_active('view'); ?>" data-i18n="navCheckStatus">Cek Status Laporan</a>
+                        <a href="<?php echo Format::htmlchars(ROOT_PATH); ?><?php echo $client_logged_in ? 'tickets.php' : 'view.php'; ?>" class="nav-link<?php echo $lpb_nav_active('view'); ?>" data-i18n="navCheckStatus">Cek Status Laporan</a>
                     </div>
                     <div class="lpb-nav-account lpb-nav-account--drawer">
 <?php require CLIENTINC_DIR . 'lpb-chrome-nav-account.inc.php'; ?>

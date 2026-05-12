@@ -49,7 +49,7 @@ require CLIENTINC_DIR . 'lpb-chrome-header.inc.php';
             </p>
             <div class="hero-buttons">
                 <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>open.php" class="btn-primary" data-i18n="btnNewTicket">Buat Tiket Baru</a>
-                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?>view.php" class="btn-secondary" data-i18n="btnCheckTicket">Periksa Status Tiket</a>
+                <a href="<?php echo Format::htmlchars(ROOT_PATH); ?><?php echo $client_logged_in ? 'tickets.php' : 'view.php'; ?>" class="btn-secondary" data-i18n="btnCheckTicket">Periksa Status Tiket</a>
             </div>
         </div>
         <footer class="hero-footer">

@@ -5,6 +5,10 @@ if (!defined('OSTCLIENTINC')) {
 if (!isset($lpb_asset)) {
     $lpb_asset = ROOT_PATH . 'assets/lapor-pak-bas/';
 }
+if (!isset($client_logged_in)) {
+    global $thisclient;
+    $client_logged_in = $thisclient && $thisclient->isValid() && !$thisclient->isGuest();
+}
 ?>
     <footer class="main-footer">
         <div class="footer-pattern-top"></div>
@@ -27,7 +31,7 @@ if (!isset($lpb_asset)) {
                 <ul class="footer-links">
                     <li><a href="<?php echo Format::htmlchars(ROOT_PATH); ?>index.php" data-i18n="navHome">Beranda</a></li>
                     <li><a href="<?php echo Format::htmlchars(ROOT_PATH); ?>open.php" data-i18n="navReport">Lapor</a></li>
-                    <li><a href="<?php echo Format::htmlchars(ROOT_PATH); ?>view.php" data-i18n="navCheckStatus">Cek Status Laporan</a></li>
+                    <li><a href="<?php echo Format::htmlchars(ROOT_PATH); ?><?php echo $client_logged_in ? 'tickets.php' : 'view.php'; ?>" data-i18n="navCheckStatus">Cek Status Laporan</a></li>
                 </ul>
             </div>
             <div class="footer-column footer-links-column">
